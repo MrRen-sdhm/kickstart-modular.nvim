@@ -55,7 +55,16 @@ vim.o.splitbelow = true
 --   See `:help lua-options`
 --   and `:help lua-options-guide`
 vim.o.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+vim.opt.listchars = { tab = '>- ', trail = '-', nbsp = '␣' }
+
+-- Default indent config
+vim.o.expandtab = true     -- Convert tabs to spaces (enable soft tabs)
+vim.o.tabstop = 4          -- Number of columns a tab character occupies
+vim.o.softtabstop = 4      -- Number of spaces inserted for a tab key press
+vim.o.shiftwidth = 4       -- Number of spaces for auto-indent (e.g., in code blocks)
+vim.o.autoindent = true    -- Copy indent from current line to next line
+vim.o.smartindent = true   -- Smart indentation for code (context-aware)
+vim.o.smarttab = true      -- Smart tab handling (aligns with shiftwidth)
 
 -- Preview substitutions live, as you type!
 vim.o.inccommand = 'split'
@@ -70,5 +79,8 @@ vim.o.scrolloff = 10
 -- instead raise a dialog asking if you wish to save the current file(s)
 -- See `:help 'confirm'`
 vim.o.confirm = true
+
+-- Auto restore cursor position when opening a file
+vim.cmd [[autocmd BufReadPost * if line("'\"") > 0 | exe "normal! g'\"" | endif]]
 
 -- vim: ts=2 sts=2 sw=2 et

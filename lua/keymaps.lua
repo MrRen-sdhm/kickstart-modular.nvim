@@ -31,6 +31,13 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
+vim.keymap.set('n', '<M-Left>',  '<C-w><C-h>', { desc = 'Move focus to the left window' })
+vim.keymap.set('n', '<M-Right>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
+vim.keymap.set('n', '<M-Down>',  '<C-w><C-j>', { desc = 'Move focus to the lower window' })
+vim.keymap.set('n', '<M-Up>',    '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+
+vim.keymap.set('n', '<C-]>',     '<C-w>v',     { desc = 'Split window vertically' })
+
 -- NOTE: Some terminals have colliding keymaps or are not able to send distinct keycodes
 -- vim.keymap.set("n", "<C-S-h>", "<C-w>H", { desc = "Move window to the left" })
 -- vim.keymap.set("n", "<C-S-l>", "<C-w>L", { desc = "Move window to the right" })
@@ -50,5 +57,27 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     vim.hl.on_yank()
   end,
 })
+
+-- toggle mouse（mouse=a <-> mouse=）
+local toggle_mouse = function()
+  local current_mouse = vim.o.mouse
+  if current_mouse == 'a' then
+    vim.o.mouse = ''  -- disable
+    print('Mouse disabled (mouse=)')
+  else
+    vim.o.mouse = 'a' -- enable in all mode
+    print('Mouse enabled (mouse=a)')
+  end
+end
+
+-- toggle mouse
+vim.keymap.set('n', '<leader>tm', toggle_mouse, { desc = '[T]oggle [m]ouse' })
+
+-- Alt+d delete word in insert mode
+vim.keymap.set('i', '<M-d>', '<C-o>dw')
+
+-- switch to last used buffer
+vim.keymap.set('n', '<leader>bb', ':b#<CR>', { noremap = true, silent = true, desc = 'switch to last used buffer' })
+vim.keymap.set('n', '<Tab>', ':b#<CR>', { noremap = true, silent = true, desc = 'switch to last used buffer' })
 
 -- vim: ts=2 sts=2 sw=2 et

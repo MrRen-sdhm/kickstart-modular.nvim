@@ -5,5 +5,8 @@ return {
     -- See `:help ibl`
     main = 'ibl',
     opts = {},
+    keys = {
+      { "<leader>ti", "<Cmd>IBLToggle<CR>", desc = "[T]oggle [I]ndent blank line" },
+    }
   },
 }
