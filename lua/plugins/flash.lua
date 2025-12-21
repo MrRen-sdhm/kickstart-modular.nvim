@@ -4,13 +4,13 @@ return {
   ---@type Flash.Config
   opts = {
     modes = {
-        -- 禁用增强的 f F t T ; ,
+        -- disable enhanced [f F t T ; ,]
         char = { enabled = false },
-        -- 使用增强的 f F t T ; , 并启用跳转标签
+        -- enable enhanced [f F t T ; ,] and enable jump labels
         -- char = { enabled = true, jump_labels = true },
     },
     highlight = {
-        -- 禁用背景变暗
+        -- disable backdrop
         backdrop = false,
     },
   },

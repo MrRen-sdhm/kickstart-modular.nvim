@@ -71,7 +71,7 @@ too - it's ignored in the kickstart repo to make maintenance easier, but it's
 
 > [!NOTE]
 > If following the recommended step above (i.e., forking the repo), replace
-> `dam9000` with `<your_github_username>` in the commands below
+> `MrRen-sdhm` with `<your_github_username>` in the commands below
 
 <details><summary> Linux and Mac </summary>
 
@@ -86,13 +86,13 @@ git clone https://github.com/MrRen-sdhm/kickstart-modular.nvim.git "${XDG_CONFIG
 If you're using `cmd.exe`:
 
 ```
-git clone https://github.com/dam9000/kickstart-modular.nvim.git "%localappdata%\nvim"
+git clone https://github.com/MrRen-sdhm/kickstart-modular.nvim.git "%localappdata%\nvim"
 ```
 
 If you're using `powershell.exe`
 
 ```
-git clone https://github.com/dam9000/kickstart-modular.nvim.git "${env:LOCALAPPDATA}\nvim"
+git clone https://github.com/MrRen-sdhm/kickstart-modular.nvim.git "${env:LOCALAPPDATA}\nvim"
 ```
 
 </details>
@@ -147,7 +147,7 @@ examples of adding popularly requested plugins.
     As you progress in learning Neovim and Lua, you might consider splitting `init.lua`
     into smaller parts. A fork of kickstart that does this while maintaining the
     same functionality is available here:
-    * [kickstart-modular.nvim](https://github.com/dam9000/kickstart-modular.nvim)
+    * [kickstart-modular.nvim](https://github.com/MrRen-sdhm/kickstart-modular.nvim)
   * *NOTE: This is the fork that splits the configuration into smaller parts.*
     The original repo with the single `init.lua` file is available here:
     * [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim)

@@ -29,7 +29,6 @@ require('lazy').setup({
   require 'plugins.possession',
   require 'plugins.snacks',
   require 'plugins.bufferline',
-  -- require 'plugins.spectre',
   require 'plugins.aerial',
   require 'plugins.lualine',
 
