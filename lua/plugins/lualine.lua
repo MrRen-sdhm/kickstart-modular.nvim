@@ -10,11 +10,16 @@ return {
           -- component_separators = { left = '', right = '' },
           component_separators = { left = '', right = '' },
           section_separators = { left = '', right = '' },
+          globalstatus = true; -- enable global statusline (have a single statusline at bottom of neovim instead of one for every window).
           disabled_filetypes = { statusline = { "dashboard", "alpha", "ministarter", "snacks_dashboard" } },
         },
         sections = {
-          -- lualine_y = {'progress'},
-          -- lualine_x = { "aerial" },
+          lualine_c = {
+            {
+              "filename",
+              path = 3, -- shows the full path and shorten $HOME to ~
+            }
+          },
           lualine_y = {
             {
               "aerial",
