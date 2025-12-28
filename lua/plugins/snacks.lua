@@ -3,8 +3,23 @@ return {
   priority = 1000,
   lazy = false,
   opts = {
-    scroll = { enabled = true, },
     -- explorer = { enabled = true },
+    -- input = { enabled = true },
+    -- picker = { enabled = true },
+    -- statuscolumn = { enabled = true },
+    -- words = { enabled = true },
+    -- scope = { enabled = true },
+    notifier = { enabled = true },
+    quickfile = { enabled = true },
+    scroll = { enabled = true, }, -- Smooth scrolling
+    bigfile = { enabled = true },
+    indent = {
+      enabled = true,
+      indent = {
+        only_scope = true, -- only show indent guides of the scope
+        only_current = true -- only show indent guides in the current window
+      },
+    },
     dashboard = {
       enabled = true,
       preset = {
@@ -14,7 +29,7 @@ return {
           { icon = " ", key = "g", desc = "Find Text", action = ":lua Snacks.dashboard.pick('live_grep')" },
           { icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
           { icon = " ", key = "c", desc = "Config", action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
-          { icon = " ", key = "s", desc = "Select Session", action = ":PossessionPick" },
+          { icon = " ", key = "s", desc = "Select Session", action = ":PossessionPick" }, -- Possession Pick
           { icon = " ", key = "S", desc = "Restore Session", section = "session" },
           { icon = "󰒲 ", key = "L", desc = "Lazy", action = ":Lazy", enabled = package.loaded.lazy ~= nil },
           { icon = " ", key = "q", desc = "Quit", action = ":qa" },

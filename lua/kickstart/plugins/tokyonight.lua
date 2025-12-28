@@ -12,6 +12,29 @@ return {
         styles = {
           comments = { italic = false }, -- Disable italics in comments
         },
+        on_colors = function(c)
+          -- c.bg = "#202232"
+
+          -- c.bg = "#222436"
+          -- c.bg_dark = "#1e2030"
+          -- c.bg_dark1 = "#191B29"
+          -- c.bg_float = "#1e2030"
+          -- c.bg_highlight = "#2f334d"
+          -- c.bg_popup = "#1e2030"
+          -- c.bg_search = "#3e68d7"
+          -- c.bg_sidebar = "#1e2030"
+          -- c.bg_statusline = "#1e2030"
+          -- c.bg_visual = "#2d3f76"
+          -- c.bg_dark = "#1e2030"
+          -- c.bg_dark1 = "#191B29"
+          -- c.bg_float = "#1e2030"
+          -- c.bg_highlight = "#2f334d"
+          -- c.bg_popup = "#1e2030"
+          -- c.bg_search = "#3e68d7"
+          -- c.bg_sidebar = "#1e2030"
+          -- c.bg_statusline = "#1e2030"
+          -- c.bg_visual = "#2d3f76"
+        end,
       }
 
       -- Load the colorscheme here.
