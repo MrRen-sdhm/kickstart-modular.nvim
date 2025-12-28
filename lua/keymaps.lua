@@ -36,7 +36,12 @@ vim.keymap.set('n', '<M-Right>', '<C-w><C-l>', { desc = 'Move focus to the right
 vim.keymap.set('n', '<M-Down>',  '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<M-Up>',    '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
-vim.keymap.set('n', '<C-]>',     '<C-w>v',     { desc = 'Split window vertically' })
+vim.keymap.set('n', '<C-]>', '<C-w>v', { desc = 'Split window vertically' })
+
+vim.keymap.set('n', '<M-->', '<C-w>|' , { desc = 'Max out the window width' }) -- <alt + ->
+vim.keymap.set('n', '<M-=>', '<C-w>=' , { desc = 'Equally window high and wide' }) -- <alt + =>
+vim.keymap.set('n', '<M-.>', '4<C-w>>' , { desc = 'Increase window width' }) -- <alt + .>
+vim.keymap.set('n', '<M-,>', '4<C-w><' , { desc = 'Decrease window width' }) -- <alt + ,>
 
 -- NOTE: Some terminals have colliding keymaps or are not able to send distinct keycodes
 -- vim.keymap.set("n", "<C-S-h>", "<C-w>H", { desc = "Move window to the left" })
@@ -58,6 +63,15 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+-- disable auto comment
+vim.cmd [[ autocmd FileType * setlocal formatoptions-=cro ]]
+
+-- add colorcolumn for gitcommit filetype
+vim.cmd [[ autocmd FileType gitcommit set colorcolumn=71 ]]
+
+-- replace the word under cursor in normal mode use \r
+vim.keymap.set('n', '\\r', [[:%s/<C-r><C-w>/]], { desc = 'replace the word under cursor' })
+
 -- toggle mouse（mouse=a <-> mouse=）
 local toggle_mouse = function()
   local current_mouse = vim.o.mouse
@@ -77,7 +91,82 @@ vim.keymap.set('n', '<leader>tm', toggle_mouse, { desc = '[T]oggle [m]ouse' })
 vim.keymap.set('i', '<M-d>', '<C-o>dw')
 
 -- switch to last used buffer
-vim.keymap.set('n', '<leader>bb', ':b#<CR>', { noremap = true, silent = true, desc = 'switch to last used buffer' })
 vim.keymap.set('n', '<Tab>', ':b#<CR>', { noremap = true, silent = true, desc = 'switch to last used buffer' })
+
+-- Visual mode text substitution
+vim.cmd [[
+function! GetVisualSelect()
+    let [line_start, column_start] = getpos("'<")[1:2]
+    let [line_end, column_end] = getpos("'>")[1:2]
+    let lines = getline(line_start, line_end)
+    if len(lines) == 0
+        return ''
+    endif
+    let lines[-1] = lines[-1][: column_end - (&selection == 'inclusive' ? 1 : 2)]
+    let lines[0] = lines[0][column_start - 1:]
+    return join(lines, "")
+endfunction
+
+function! SubstitueVisualSelect()
+    let mode=visualmode()
+    if mode==# "v"
+        let str = GetVisualSelect()
+        call feedkeys(printf(":%%s/%s", str), 'n')
+    elseif mode==# "V"
+        call feedkeys(":'<,'>s/", 'n')
+    elseif mode==# "\<C-v>"
+        call feedkeys(":'<,'>s/", 'n')
+    endif
+endfunction
+
+xnoremap s :<c-u>call SubstitueVisualSelect()<cr>
+]]
+
+-- star search
+vim.cmd [[
+" https://www.vim.org/scripts/script.php?script_id=4335
+function! s:VStarsearch_searchCWord()
+    let wordStr = expand("<cword>")
+    if strlen(wordStr) == 0
+        echohl ErrorMsg
+        echo 'E348: No string under cursor'
+        echohl NONE
+        return
+    endif
+
+    if wordStr[0] =~ '\<'
+        let @/ = '\<' . wordStr . '\>'
+        call histadd('search', '\<' . wordStr . '\>') " add to search history
+    else
+        let @/ = wordStr
+        call histadd('search', wordStr) " add to search history
+    endif
+
+    let savedUnnamed = @"
+    let savedS = @s
+    normal! "syiw
+    if wordStr != @s
+        normal! w
+    endif
+    let @s = savedS
+    let @" = savedUnnamed
+endfunction
+
+" https://github.com/bronson/vim-visual-star-search/
+function! s:VStarsearch_searchVWord()
+    let savedUnnamed = @"
+    let savedS = @s
+    normal! gv"sy
+    let @/ = '\V' . substitute(escape(@s, '\'), '\n', '\\n', 'g')
+    call histadd('search', '\V' . substitute(escape(@s, '\'), '\n', '\\n', 'g')) " add to search history
+    let @s = savedS
+    let @" = savedUnnamed
+endfunction
+
+" In normal mode, use * to search the word under the cursor, only highlight without jumping, and add to search history
+nnoremap <silent> * :call <SID>VStarsearch_searchCWord()<CR>:set hls<CR>
+" In visual mode, use * to search the selected text under the cursor, only highlight without jumping, and add to search history
+vnoremap <silent> * :<C-u>call <SID>VStarsearch_searchVWord()<CR>:set hls<CR>
+]]
 
 -- vim: ts=2 sts=2 sw=2 et

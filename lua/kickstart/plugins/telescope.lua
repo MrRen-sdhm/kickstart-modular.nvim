@@ -115,12 +115,12 @@ return {
       vim.keymap.set('n', '<leader>sr', builtin.oldfiles, { desc = '[S]earch [R]ecent Files' })
       vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
 
-      vim.keymap.set("n", "<leader>ff", function()
-        builtin.lsp_document_symbols {
-          symbols = { "Function", "Method" },
-          prompt_title = 'Find Functions'
-        }
-      end, { desc = "[F]ind functions"})
+      -- vim.keymap.set("n", "<leader>sF", function()
+      --   builtin.lsp_document_symbols {
+      --     symbols = { "Function", "Method" },
+      --     prompt_title = 'Find Functions'
+      --   }
+      -- end, { desc = "[F]ind functions"})
 
       vim.keymap.set('n', '<leader>sb', builtin.current_buffer_fuzzy_find,
         { desc = '[/] Fuzzily search in current buffer' })

@@ -3,7 +3,10 @@ return {
   priority = 1000,
   lazy = false,
   opts = {
+    scroll = { enabled = true, },
+    -- explorer = { enabled = true },
     dashboard = {
+      enabled = true,
       preset = {
         keys = {
           { icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },

@@ -23,14 +23,24 @@ require('lazy').setup({
   -- modular approach: using `require 'path.name'` will
   -- include a plugin definition from file lua/path/name.lua
 
+  {
+    'stevearc/oil.nvim',
+    opts = {},
+    dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
+    lazy = false,
+  },
+
   require 'plugins.flash',
   -- require 'plugins.persistence',
-  -- require 'plugins.persisted',
   require 'plugins.possession',
   require 'plugins.snacks',
   require 'plugins.bufferline',
   require 'plugins.aerial',
   require 'plugins.lualine',
+  require 'plugins.leaderf',
+  require 'plugins.nvim-colorizer',
+  require 'plugins.vim-mark',
+  -- require 'plugins.vim-illuminate',
 
   require 'kickstart.plugins.gitsigns',
 

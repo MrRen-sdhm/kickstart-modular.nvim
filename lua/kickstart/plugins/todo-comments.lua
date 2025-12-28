@@ -9,17 +9,22 @@ return {
       keywords = {
         DEBUG = { icon = "", color = "error", alt = { "DBG", "DEBG" } }, -- add key words for debug
       },
+      highlight = {
+        multiline = false, -- disable multiline comment
+      }
     }
   },
 }
 
--- TODO:
--- FIXME:
--- NOTE:
--- HACK:
--- WARN:
--- PERF:
--- TEST:
--- DEBUG:
+-- TODO: xxxx
+-- xxxx
+-- FIXME: xxxx
+-- xxxx
+-- NOTE: xxxx
+-- HACK: xxxx
+-- WARN: xxxx
+-- PERF: xxxx
+-- TEST: xxxx
+-- DEBUG: xxxx
 
 -- vim: ts=2 sts=2 sw=2 et
