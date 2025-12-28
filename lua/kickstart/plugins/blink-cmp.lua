@@ -28,7 +28,21 @@ return {
             end,
           },
         },
+        config = function()
+          -- load snipmate formate snippets (e.g. ~/.config/nvim/snippets/c.snippets)
+          require("luasnip.loaders.from_snipmate").lazy_load()
+
+          -- register `LuaSnipEdit` command to edit snippets
+          vim.api.nvim_create_user_command("LuaSnipEdit", function()
+            require("luasnip.loaders").edit_snippet_files()
+          end, { desc = "Edit LuaSnip snippet files", })
+        end,
         opts = {},
+      },
+      -- Dictionary Engine
+      {
+        'Kaiser-Yang/blink-cmp-dictionary',
+        dependencies = { 'nvim-lua/plenary.nvim' }
       },
       'folke/lazydev.nvim',
     },
@@ -73,12 +87,53 @@ return {
         -- By default, you may press `<c-space>` to show the documentation.
         -- Optionally, set `auto_show = true` to show the documentation after a delay.
         documentation = { auto_show = true, auto_show_delay_ms = 500 },
+        menu = {
+          -- Automatically show the completion menu
+          auto_show = true,
+
+          -- nvim-cmp style menu
+          draw = {
+            columns = {
+              -- { "kind_icon" },
+              { "label", "label_description", gap = 10 },
+              { "kind_icon", "kind", gap = 0 },
+              -- { "kind" },
+            },
+          }
+        },
       },
 
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'lazydev' },
+        default = { 'lsp', 'path', 'snippets', 'buffer', 'omni', 'lazydev', 'dictionary' },
+
+        -- NOTE: You can use `score_offset` to set the priority of providers:
+        -- https://cmp.saghen.dev/configuration/reference#providers
         providers = {
           lazydev = { module = 'lazydev.integrations.blink', score_offset = 100 },
+          -- https://cmp.saghen.dev/configuration/sources.html#show-buffer-completions-with-lsp
+          -- By default, the buffer source will only show when the LSP source is disabled or returns no items.
+          -- You may always show the buffer source via:
+          lsp = {
+            fallbacks = {}, -- defaults to `{ 'buffer' }`
+            score_offset = 0, -- lsp default score_offset (priority) = 0
+          },
+          path = { score_offset = 3 }, -- path default score_offset (priority) = 3
+          buffer = { score_offset = -3 }, -- buffer default score_offset (priority) = -3
+          snippets = { score_offset = 1 }, -- snippets default score_offset (priority) = -1
+          dictionary = {
+              -- https://github.com/Kaiser-Yang/blink-cmp-dictionary
+              module = 'blink-cmp-dictionary',
+              name = 'Dict',
+              -- Make sure this is at least 2.
+              -- 3 is recommended
+              min_keyword_length = 3,
+              opts = {
+                  -- options for blink-cmp-dictionary
+                  -- english words txt: https://raw.githubusercontent.com/dwyl/english-words/refs/heads/master/words.txt
+                  dictionary_directories = { vim.fn.expand('~/.config/nvim/dictionary') }
+              },
+              score_offset = -100, -- lowest priority
+          }
         },
       },
 
@@ -91,7 +146,29 @@ return {
       -- the rust implementation via `'prefer_rust_with_warning'`
       --
       -- See :h blink-cmp-config-fuzzy for more information
-      fuzzy = { implementation = 'lua' },
+      fuzzy = {
+        implementation = 'lua',
+        sorts = {
+          -- custom sort function (based on priority) WARN: In the official documentation, `score_offset` is used to set the priority.
+          -- https://cmp.saghen.dev/configuration/fuzzy.html#sorting
+          -- https://github.com/saghen/blink.cmp/issues/1098#issuecomment-2679295335
+          -- function(a, b)
+          --   local source_priority = {
+          --     snippets = 4,
+          --     lsp = 3,
+          --     path = 2,
+          --     buffer = 1,
+          --     dictionary = 0,
+          --   }
+          --   local a_priority = source_priority[a.source_id]
+          --   local b_priority = source_priority[b.source_id]
+          --   if a_priority ~= b_priority then return a_priority > b_priority end
+          -- end,
+          'score',      -- Primary sort: by fuzzy matching score
+          'sort_text',  -- Secondary sort: by sortText field if scores are equal
+          'label',      -- Tertiary sort: by label if still tied
+        }
+      },
 
       -- Shows a signature help window while you type arguments for a function
       signature = { enabled = true },
