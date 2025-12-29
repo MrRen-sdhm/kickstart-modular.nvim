@@ -44,6 +44,9 @@ return {
         'Kaiser-Yang/blink-cmp-dictionary',
         dependencies = { 'nvim-lua/plenary.nvim' }
       },
+      -- Copilot
+      "fang2hou/blink-copilot",
+
       'folke/lazydev.nvim',
     },
     --- @module 'blink.cmp'
@@ -104,7 +107,7 @@ return {
       },
 
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'buffer', 'omni', 'lazydev', 'dictionary' },
+        default = { 'lsp', 'path', 'snippets', 'buffer', 'omni', 'lazydev', 'dictionary', 'copilot' },
 
         -- NOTE: You can use `score_offset` to set the priority of providers:
         -- https://cmp.saghen.dev/configuration/reference#providers
@@ -133,7 +136,18 @@ return {
                   dictionary_directories = { vim.fn.expand('~/.config/nvim/dictionary') }
               },
               score_offset = -100, -- lowest priority
-          }
+          },
+          copilot = {
+            name = "copilot",
+            module = "blink-copilot",
+            score_offset = 100,
+            async = true,
+            opts = {
+              -- Local options override global ones
+              max_completions = 3,  -- Override global max_completions
+              max_attempts = 4,
+            }
+          },
         },
       },
 

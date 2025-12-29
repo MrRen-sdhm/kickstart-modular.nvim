@@ -40,6 +40,7 @@ require('lazy').setup({
   require 'plugins.leaderf',
   require 'plugins.nvim-colorizer',
   require 'plugins.vim-mark',
+  require 'plugins.copilot',
   -- require 'plugins.vim-illuminate',
 
   require 'kickstart.plugins.gitsigns',

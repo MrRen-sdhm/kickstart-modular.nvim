@@ -37,6 +37,11 @@ return {
       },
     },
   },
+  init = function ()
+    vim.api.nvim_create_user_command("NotifyHistory", function()
+      Snacks.notifier.show_history()
+    end, { desc = "show notifier history", } )
+  end
 }
 
 -- vim: ts=2 sts=2 sw=2 et
