@@ -29,6 +29,38 @@ require('lazy').setup({
     dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
     lazy = false,
   },
+  {
+    "rebelot/kanagawa.nvim",
+    priority = 1000, -- Ensure it loads first
+    config = function()
+      require("kanagawa").setup({
+        commentStyle = { italic = false },
+      })
+      -- vim.cmd.colorscheme("kanagawa-wave")
+    end,
+  },
+  {
+    "olimorris/onedarkpro.nvim",
+    priority = 1000, -- Ensure it loads first
+  },
+  {
+    "polirritmico/monokai-nightasty.nvim",
+    priority = 1000,
+  },
+  {
+    "loctvl842/monokai-pro.nvim",
+    priority = 1000,
+    -- config = function()
+    --   require("monokai-pro").setup()
+    -- end
+  },
+  {
+    'morhetz/gruvbox',
+    priority = 1000,
+    -- config = function()
+    --   vim.cmd.colorscheme("gruvbox")
+    -- end
+  },
 
   require 'plugins.flash',
   -- require 'plugins.persistence',

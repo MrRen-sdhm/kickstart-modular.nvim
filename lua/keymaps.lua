@@ -1,6 +1,13 @@
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
+-- Clear search highlights when opening a new file or loading a session
+vim.api.nvim_create_autocmd({ "VimEnter", "SessionLoadPost" }, {
+  callback = function()
+    vim.cmd("nohlsearch")
+  end,
+})
+
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
