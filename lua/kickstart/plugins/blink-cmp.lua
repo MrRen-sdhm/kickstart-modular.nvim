@@ -80,6 +80,16 @@ return {
         --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
       },
 
+      -- help: https://cmp.saghen.dev/configuration/reference#cmdline
+      cmdline = {
+        enabled = true,
+        keymap = { preset = 'cmdline' },
+        -- keymap = { preset = 'inherit' },
+        -- completion = {
+        --   menu = { auto_show = true }
+        -- },
+      },
+
       appearance = {
         -- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
         -- Adjusts spacing to ensure icons are aligned
@@ -104,6 +114,8 @@ return {
             },
           }
         },
+        -- auto select the first one, but do not auto insert to the buffer
+        list = { selection = { preselect = true, auto_insert = false } },
       },
 
       sources = {
@@ -142,11 +154,11 @@ return {
             module = "blink-copilot",
             score_offset = 100,
             async = true,
-            opts = {
-              -- Local options override global ones
-              max_completions = 3,  -- Override global max_completions
-              max_attempts = 4,
-            }
+            -- opts = {
+            --   -- Local options override global ones
+            --   max_completions = 3,  -- Override global max_completions
+            --   max_attempts = 4,
+            -- }
           },
         },
       },

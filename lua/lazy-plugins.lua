@@ -61,6 +61,28 @@ require('lazy').setup({
     --   vim.cmd.colorscheme("gruvbox")
     -- end
   },
+  {
+    "Mofiqul/vscode.nvim",
+    priority = 1000,
+    config = function()
+      require('vscode').setup({
+        -- Override colors (see ./lua/vscode/colors.lua)
+        color_overrides = {
+            -- vscBack = '#121212',
+        },
+      })
+      -- vim.cmd.colorscheme("vscode")
+    end
+  },
+  {
+    "lunarvim/darkplus.nvim",
+    priority = 1000,
+    -- config = function()
+    --   vim.cmd.colorscheme("darkplus")
+    -- end
+  },
+  { "bluz71/vim-moonfly-colors", name = "moonfly", lazy = false, priority = 1000 },
+  { "tiagovla/tokyodark.nvim" },
 
   require 'plugins.flash',
   -- require 'plugins.persistence',
@@ -72,7 +94,8 @@ require('lazy').setup({
   require 'plugins.leaderf',
   require 'plugins.nvim-colorizer',
   require 'plugins.vim-mark',
-  require 'plugins.copilot',
+  require 'plugins.trouble',
+  -- require 'plugins.copilot',
   -- require 'plugins.vim-illuminate',
 
   require 'kickstart.plugins.gitsigns',
