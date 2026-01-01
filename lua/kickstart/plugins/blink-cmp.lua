@@ -8,6 +8,7 @@ return {
       {
         'L3MON4D3/LuaSnip',
         version = '2.*',
+        lazy = true,
         build = (function()
           -- Build Step is needed for regex support in snippets.
           -- This step is not supported in many windows environments.
@@ -42,12 +43,19 @@ return {
       -- Dictionary Engine
       {
         'Kaiser-Yang/blink-cmp-dictionary',
-        dependencies = { 'nvim-lua/plenary.nvim' }
+        dependencies = { 'nvim-lua/plenary.nvim' },
+        lazy = true,
       },
       -- Copilot
-      "fang2hou/blink-copilot",
-
-      'folke/lazydev.nvim',
+      {
+        "fang2hou/blink-copilot",
+        lazy = true,
+      },
+      -- lazydev
+      {
+        'folke/lazydev.nvim',
+        lazy = true,
+      }
     },
     --- @module 'blink.cmp'
     --- @type blink.cmp.Config

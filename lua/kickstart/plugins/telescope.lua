@@ -57,6 +57,7 @@ return {
         -- You can put your default mappings / updates / etc. in here
         --  All the info you're looking for is in `:help telescope.setup()`
         defaults = {
+          dynamic_preview_title = true, -- for yank_history
           layout_strategy = "vertical",
           layout_config = {
             vertical = {
@@ -71,7 +72,13 @@ return {
           --   i = { ['<c-enter>'] = 'to_fuzzy_refine' },
           -- },
         },
-        -- pickers = {}
+        pickers = {
+          buffers = {
+            sort_lastused = true,
+            ignore_current_buffer = true,
+            -- previewer = false,
+          },
+        },
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
@@ -101,6 +108,7 @@ return {
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
       pcall(require('telescope').load_extension, 'aerial')
+      pcall(require('telescope').load_extension, 'yank_history')
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
@@ -147,6 +155,10 @@ return {
       vim.keymap.set('n', '<leader>sc', function()
         builtin.find_files { cwd = vim.fn.stdpath 'config', prompt_title = "🔧 Search Neovim Config", }
       end, { desc = '[S]earch Neovim [C]onfig files' })
+
+      vim.keymap.set('n', '<leader>uc', function()
+        builtin.colorscheme { enable_preview = true }
+      end, { desc = '[U]i [C]olorscheme' })
     end,
   },
 }

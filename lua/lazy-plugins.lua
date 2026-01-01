@@ -26,12 +26,14 @@ require('lazy').setup({
   {
     'stevearc/oil.nvim',
     opts = {},
-    dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
-    lazy = false,
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    cmd = { "Oil" },
   },
+
+  -- colorscheme
   {
     "rebelot/kanagawa.nvim",
-    priority = 1000, -- Ensure it loads first
+    lazy = true,
     config = function()
       require("kanagawa").setup({
         commentStyle = { italic = false },
@@ -41,29 +43,29 @@ require('lazy').setup({
   },
   {
     "olimorris/onedarkpro.nvim",
-    priority = 1000, -- Ensure it loads first
+    lazy = true,
   },
   {
     "polirritmico/monokai-nightasty.nvim",
-    priority = 1000,
+    lazy = true,
   },
   {
     "loctvl842/monokai-pro.nvim",
-    priority = 1000,
+    lazy = true,
     -- config = function()
     --   require("monokai-pro").setup()
     -- end
   },
   {
     'morhetz/gruvbox',
-    priority = 1000,
+    lazy = true,
     -- config = function()
     --   vim.cmd.colorscheme("gruvbox")
     -- end
   },
   {
     "Mofiqul/vscode.nvim",
-    priority = 1000,
+    lazy = true,
     config = function()
       require('vscode').setup({
         -- Override colors (see ./lua/vscode/colors.lua)
@@ -74,18 +76,12 @@ require('lazy').setup({
       -- vim.cmd.colorscheme("vscode")
     end
   },
-  {
-    "lunarvim/darkplus.nvim",
-    priority = 1000,
-    -- config = function()
-    --   vim.cmd.colorscheme("darkplus")
-    -- end
-  },
-  { "bluz71/vim-moonfly-colors", name = "moonfly", lazy = false, priority = 1000 },
-  { "tiagovla/tokyodark.nvim" },
+  { "lunarvim/darkplus.nvim", lazy = true },
+  { "bluz71/vim-moonfly-colors", name = "moonfly", lazy = true },
+  { "tiagovla/tokyodark.nvim", lazy = true },
 
   require 'plugins.flash',
-  -- require 'plugins.persistence',
+  require 'plugins.persistence',
   require 'plugins.possession',
   require 'plugins.snacks',
   require 'plugins.bufferline',
@@ -95,8 +91,13 @@ require('lazy').setup({
   require 'plugins.nvim-colorizer',
   require 'plugins.vim-mark',
   require 'plugins.trouble',
-  -- require 'plugins.copilot',
-  -- require 'plugins.vim-illuminate',
+  require 'plugins.noice',
+  require 'plugins.vim-tmux-navigator',
+  require 'plugins.undotree',
+  require 'plugins.yanky',
+  require 'plugins.copilot_lua',
+  require 'plugins.copilot_vim',
+  require 'plugins.vim-illuminate',
 
   require 'kickstart.plugins.gitsigns',
 
@@ -106,7 +107,7 @@ require('lazy').setup({
 
   require 'kickstart.plugins.lspconfig',
 
-  -- require 'kickstart.plugins.conform',
+  require 'kickstart.plugins.conform',
 
   require 'kickstart.plugins.blink-cmp',
 
@@ -116,7 +117,7 @@ require('lazy').setup({
 
   require 'kickstart.plugins.todo-comments',
 
-  -- require 'kickstart.plugins.mini',
+  require 'kickstart.plugins.mini',
 
   require 'kickstart.plugins.treesitter',
 
@@ -130,7 +131,7 @@ require('lazy').setup({
   --  Uncomment any of the lines below to enable them (you will need to restart nvim).
   --
   -- require 'kickstart.plugins.debug',
-  -- require 'kickstart.plugins.indent_line', -- it has been replaced by snacks.indent
+  require 'kickstart.plugins.indent_line', -- it has been replaced by snacks.indent
   -- require 'kickstart.plugins.lint',
   -- require 'kickstart.plugins.autopairs',
   require 'kickstart.plugins.neo-tree',

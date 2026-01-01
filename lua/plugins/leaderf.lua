@@ -1,7 +1,7 @@
 return {
   {
     "Yggdroot/LeaderF",
-    lazy = false,
+    event = "VeryLazy",
 
     build = function()
       vim.fn["LeaderfInstallCExtension"]()
@@ -53,7 +53,8 @@ return {
         Lf_hl_match0             = { gui='NONE', font='NONE', guifg='#ff5f00', guibg='NONE', cterm='NONE', ctermfg='202', ctermbg='NONE' }, -- match
         Lf_hl_popup_blank        = { gui='NONE', font='NONE', guifg='NONE',    guibg='#1e2030', cterm='NONE', ctermfg='239', ctermbg='NONE' }, -- status line
 
-        Lf_hl_popup_inputText    = { gui='NONE', font='NONE', guifg='#87d7pf', guibg='#1e2030', cterm='NONE', ctermfg='117', ctermbg='239' }, -- input text
+        -- Lf_hl_popup_inputText    = { gui='NONE', font='NONE', guifg='#87d7pf', guibg='#1e2030', cterm='NONE', ctermfg='117', ctermbg='239' }, -- input text (use bg same to status line)
+        Lf_hl_popup_inputText    = { gui='NONE', font='NONE', guifg='#87d7pf', guibg='NONE', cterm='NONE', ctermfg='117', ctermbg='239' }, -- input text
         Lf_hl_cursorline         = { gui='NONE', font='NONE', guifg='#ffff00', guibg='NONE',    cterm='NONE', ctermfg='226', ctermbg='NONE' }, -- cursor line
 
         Lf_hl_popup_prompt       = { gui='NONE', font='NONE', guifg='#ffd75f', guibg='NONE', cterm='NONE', ctermfg='221', ctermbg='NONE' }, -- top left
@@ -71,7 +72,8 @@ return {
         Lf_hl_popup_total        = { gui='NONE', font='NONE', guifg='#303030', guibg='#82aaff', cterm='NONE', ctermfg='236', ctermbg='151' }, -- top right
 
         Lf_hl_popup_window       = { gui='NONE', font='NONE', guifg='NONE', guibg='NONE', cterm='NONE', ctermfg='NONE', ctermbg='NONE' }, -- background
-        Lf_hl_popupBorder        = { gui='bold', font='bold', guifg='#5d91fd', guibg='NONE', cterm='bold', ctermfg='NONE', ctermbg='NONE' }, -- border
+        -- Lf_hl_popupBorder        = { gui='bold', font='bold', guifg='#5d91fd', guibg='NONE', cterm='bold', ctermfg='NONE', ctermbg='NONE' }, -- border
+        Lf_hl_popupBorder        = { gui='bold', font='bold', guifg='#82aaff', guibg='NONE', cterm='bold', ctermfg='NONE', ctermbg='NONE' }, -- border
       },
     }
     end,

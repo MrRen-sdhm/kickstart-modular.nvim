@@ -1,8 +1,8 @@
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
--- Clear search highlights when opening a new file or loading a session
-vim.api.nvim_create_autocmd({ "VimEnter", "SessionLoadPost" }, {
+-- Clear search highlights when opening a new file
+vim.api.nvim_create_autocmd("VimEnter", {
   callback = function()
     vim.cmd("nohlsearch")
   end,
@@ -14,6 +14,10 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+
+-- move multi-line
+vim.keymap.set({'n', 'v'}, "<C-Up>", "3k", { noremap = true, silent = true, desc = "move up 3 line" })
+vim.keymap.set({'n', 'v'}, "<C-Down>", "3j", { noremap = true, silent = true, desc = "move down 3 line" })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
