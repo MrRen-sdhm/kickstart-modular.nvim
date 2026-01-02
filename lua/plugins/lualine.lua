@@ -38,6 +38,43 @@ return {
               path = 3, -- shows the full path and shorten $HOME to ~
             }
           },
+          lualine_x = {
+            -- https://github.com/folke/noice.nvim?tab=readme-ov-file#-statusline-components
+            -- {
+            --   require("noice").api.status.message.get_hl,
+            --   cond = require("noice").api.status.message.has,
+            -- },
+            {
+              require("noice").api.status.command.get,
+              cond = require("noice").api.status.command.has,
+              color = { fg = "#ff9e64" },
+            },
+            -- {
+            --   require("noice").api.status.mode.get,
+            --   cond = require("noice").api.status.mode.has,
+            --   color = { fg = "#ff9e64" },
+            -- },
+            -- {
+            --   require("noice").api.status.search.get,
+            --   cond = require("noice").api.status.search.has,
+            --   color = { fg = "#ff9e64" },
+            -- },
+            {
+              'encoding',
+            },
+            {
+              'fileformat',
+              symbols = {
+                -- unix = '', -- e712
+                -- dos = '',  -- e70f
+                -- mac = '',  -- e711
+                unix = 'unix',
+                dos = 'dos',
+                mac = 'mac',
+              }
+            },
+            { 'filetype' },
+          },
           lualine_y = {
             {
               "aerial",
