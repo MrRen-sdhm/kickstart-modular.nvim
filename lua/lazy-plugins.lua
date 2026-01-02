@@ -98,6 +98,8 @@ require('lazy').setup({
   require 'plugins.copilot_lua',
   require 'plugins.copilot_vim',
   require 'plugins.vim-illuminate',
+  require 'plugins.cutlass',
+  require 'plugins.minuet',
 
   require 'kickstart.plugins.gitsigns',
 

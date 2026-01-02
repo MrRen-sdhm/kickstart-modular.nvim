@@ -124,10 +124,12 @@ return {
         },
         -- auto select the first one, but do not auto insert to the buffer
         list = { selection = { preselect = true, auto_insert = false } },
+        -- Recommended to avoid unnecessary request (from minuet)
+        trigger = { prefetch_on_insert = false },
       },
 
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'buffer', 'omni', 'lazydev', 'dictionary', 'copilot' },
+        default = { 'lsp', 'path', 'snippets', 'buffer', 'omni', 'lazydev', 'dictionary', 'copilot', 'minuet'},
 
         -- NOTE: You can use `score_offset` to set the priority of providers:
         -- https://cmp.saghen.dev/configuration/reference#providers
@@ -167,6 +169,15 @@ return {
             --   max_completions = 3,  -- Override global max_completions
             --   max_attempts = 4,
             -- }
+          },
+          minuet = {
+             name = 'minuet',
+             module = 'minuet.blink',
+             async = true,
+             -- Should match minuet.config.request_timeout * 1000,
+             -- since minuet.config.request_timeout is in seconds
+             timeout_ms = 3000,
+             score_offset = 50, -- Gives minuet higher priority among suggestions
           },
         },
       },
