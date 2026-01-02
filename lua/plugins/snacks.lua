@@ -37,10 +37,21 @@ return {
       },
     },
   },
+  keys = {
+    { "<leader>tt", function() Snacks.terminal() end, desc = "[T]oggle [T]erminal" },
+  },
   init = function ()
     vim.api.nvim_create_user_command("NotifyHistory", function()
       Snacks.notifier.show_history()
     end, { desc = "show notifier history", } )
+
+    vim.api.nvim_create_autocmd("User", {
+      pattern = "VeryLazy",
+      callback = function()
+        -- create key map
+        Snacks.toggle.indent():map("<leader>ti") -- toggle indent guides
+      end,
+    })
   end
 }
 
