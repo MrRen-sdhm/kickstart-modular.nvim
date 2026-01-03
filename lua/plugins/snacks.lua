@@ -39,6 +39,7 @@ return {
   },
   keys = {
     { "<leader>tt", function() Snacks.terminal() end, desc = "[T]oggle [T]erminal" },
+    { "<leader>n", function() Snacks.notifier.show_history() end, desc = "[N]otify history" },
   },
   init = function ()
     vim.api.nvim_create_user_command("NotifyHistory", function()

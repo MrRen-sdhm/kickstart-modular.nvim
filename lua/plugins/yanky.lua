@@ -28,9 +28,9 @@ return {
       },
   },
   keys = {
-    -- { "<leader>p", "<cmd>YankyRingHistory<cr>", mode = { "n", "x" }, desc = "Open Yank History" }, -- use vim.ui.select
-    { "<leader>p", "<cmd>Telescope yank_history<cr>", mode = { "n", "x" }, desc = "Open Yank History" }, -- use telescope
-    -- { "<leader>p", function() Snacks.picker.yanky() end, mode = { "n", "x" }, desc = "Open Yank History" }, -- use telescope
+    -- { "<leader>sy", "<cmd>YankyRingHistory<cr>", mode = { "n", "x" }, desc = "[S]earch [Y]ank History" }, -- use vim.ui.select
+    { "<leader>sy", "<cmd>Telescope yank_history<cr>", mode = { "n", "x" }, desc = "[S]earch [Y]ank History" }, -- use telescope
+    -- { "<leader>sy", function() Snacks.picker.yanky() end, mode = { "n", "x" }, desc = "[S]earch [Y]ank History" }, -- use telescope
     { "y", "<Plug>(YankyYank)", mode = { "n", "x" }, desc = "Yank text" },
     { "p", "<Plug>(YankyPutAfter)", mode = { "n", "x" }, desc = "Put yanked text after cursor" },
     { "P", "<Plug>(YankyPutBefore)", mode = { "n", "x" }, desc = "Put yanked text before cursor" },

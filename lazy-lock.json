@@ -1,5 +1,5 @@
 {
-  "LeaderF": { "branch": "master", "commit": "99095e472b0ed700233a39e4d07633c194d8dff2" },
+  "LeaderF": { "branch": "master", "commit": "013fb023c7e588d338269ef4f301bf954e9440b3" },
   "LuaSnip": { "branch": "master", "commit": "5a1e39223db9a0498024a77b8441169d260c8c25" },
   "aerial.nvim": { "branch": "master", "commit": "535f643b0c3e642465d3cf37b96fc54ddd3b2c1e" },
   "blink-cmp-dictionary": { "branch": "master", "commit": "944b3b215b01303672d4213758db7c5c5a1e3c92" },

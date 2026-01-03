@@ -90,7 +90,7 @@ return {
 
       -- help: https://cmp.saghen.dev/configuration/reference#cmdline
       cmdline = {
-        enabled = true,
+        enabled = false,
         keymap = { preset = 'cmdline' },
         -- keymap = { preset = 'inherit' },
         -- completion = {
@@ -125,11 +125,12 @@ return {
         -- auto select the first one, but do not auto insert to the buffer
         list = { selection = { preselect = true, auto_insert = false } },
         -- Recommended to avoid unnecessary request (from minuet)
-        trigger = { prefetch_on_insert = false },
+        -- trigger = { prefetch_on_insert = false },
       },
 
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'buffer', 'omni', 'lazydev', 'dictionary', 'copilot', 'minuet'},
+        -- default = { 'lsp', 'path', 'snippets', 'buffer', 'omni', 'lazydev', 'dictionary', 'copilot', 'minuet' },
+        default = { 'lsp', 'path', 'snippets', 'buffer', 'omni', 'lazydev', 'dictionary', 'copilot' },
 
         -- NOTE: You can use `score_offset` to set the priority of providers:
         -- https://cmp.saghen.dev/configuration/reference#providers
@@ -170,15 +171,15 @@ return {
             --   max_attempts = 4,
             -- }
           },
-          minuet = {
-             name = 'minuet',
-             module = 'minuet.blink',
-             async = true,
-             -- Should match minuet.config.request_timeout * 1000,
-             -- since minuet.config.request_timeout is in seconds
-             timeout_ms = 3000,
-             score_offset = 50, -- Gives minuet higher priority among suggestions
-          },
+          -- minuet = {
+          --    name = 'minuet',
+          --    module = 'minuet.blink',
+          --    async = true,
+          --    -- Should match minuet.config.request_timeout * 1000,
+          --    -- since minuet.config.request_timeout is in seconds
+          --    timeout_ms = 3000,
+          --    score_offset = 50, -- Gives minuet higher priority among suggestions
+          -- },
         },
       },
 
@@ -194,21 +195,6 @@ return {
       fuzzy = {
         implementation = 'lua',
         sorts = {
-          -- custom sort function (based on priority) WARN: In the official documentation, `score_offset` is used to set the priority.
-          -- https://cmp.saghen.dev/configuration/fuzzy.html#sorting
-          -- https://github.com/saghen/blink.cmp/issues/1098#issuecomment-2679295335
-          -- function(a, b)
-          --   local source_priority = {
-          --     snippets = 4,
-          --     lsp = 3,
-          --     path = 2,
-          --     buffer = 1,
-          --     dictionary = 0,
-          --   }
-          --   local a_priority = source_priority[a.source_id]
-          --   local b_priority = source_priority[b.source_id]
-          --   if a_priority ~= b_priority then return a_priority > b_priority end
-          -- end,
           'score',      -- Primary sort: by fuzzy matching score
           'sort_text',  -- Secondary sort: by sortText field if scores are equal
           'label',      -- Tertiary sort: by label if still tied

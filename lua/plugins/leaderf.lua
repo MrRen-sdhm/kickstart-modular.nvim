@@ -3,10 +3,6 @@ return {
     "Yggdroot/LeaderF",
     event = "VeryLazy",
 
-    build = function()
-      vim.fn["LeaderfInstallCExtension"]()
-    end,
-
     init = function()
       vim.g.Lf_HideHelp = 1
       vim.g.Lf_UseCache = 0
@@ -24,11 +20,14 @@ return {
       vim.g.Lf_JumpToExistingWindow = 1
       vim.g.Lf_TabpagePosition = 3
       vim.g.Lf_QuickSelect = 0
+      vim.g.Lf_GtagsAutoGenerate = 1
+      vim.g.Lf_GtagsAutoUpdate = 0
 
       vim.g.Lf_WildIgnore = { ['dir'] = {}, ['file'] = {'*.[!ch]*', '*.c[a-z]*', '*.h[a-z]*'} }
       vim.g.Lf_RgConfig = {"-g=!*.mk", "-g=!*.cc"}
       vim.g.Lf_CommandMap = {['<C-K>'] = {'<C-K>', '<Up>'}, ['<C-J>'] = {'<C-J>', '<Down>'}, ['<C-T>'] = {'<C-T>', '<C-\\>'} }
       vim.g.Lf_ShortcutF = '<C-P>'
+      vim.g.Lf_ShortcutB = ''
       vim.g.Lf_PreviewResult = { ['File'] = 0, ['Buffer'] = 0, ['Mru'] = 0, ['Tag'] = 1, ['BufTag'] = 1, ['Function'] = 1, ['Line'] = 1, ['Rg'] = 0, ['Gtags'] = 1 }
 
       -- popup config
@@ -79,8 +78,92 @@ return {
     end,
 
     config = function()
-      vim.keymap.set("n", "<leader>f", "<cmd>LeaderfBuffer<cr>", { desc = "Leaderf Buffer" })
-      vim.keymap.set("n", "<leader>l", "<cmd>LeaderfLine<cr>", { desc = "Leaderf Line" })
+      local function get_git_root()
+        local file_dir = vim.fn.expand("%:p:h")
+        local result = vim.fn.systemlist('git -C "' .. file_dir .. '" rev-parse --show-toplevel')
+
+        if vim.v.shell_error ~= 0 or #result == 0 then
+          return nil, "Not inside a Git repository"
+        end
+
+        return result[1]
+      end
+
+      vim.keymap.set("n", "<leader>fb", "<cmd>LeaderfBuffer<cr>", { desc = "Leader[F] [B]uffer" })
+      vim.keymap.set("n", "<leader>fl", "<cmd>LeaderfLine<cr>", { desc = "Leader[F] [L]ine" })
+      vim.keymap.set("n", "<leader>fM", "<cmd>LeaderfMru<cr>", { desc = "Leader[F] [M]ru" })
+      vim.keymap.set("n", "<leader>fm", "<cmd>Leaderf mru --project<cr>", { desc = "Leader[F] [M]ru in project" })
+      vim.keymap.set("n", "<leader>fF", "<cmd>Leaderf function --no-sort<cr>", { desc = "Leader[F] [F]unction" })
+      vim.keymap.set("n", "<leader>ft", "<cmd>LeaderfBufTag<cr>", { desc = "Leader[F] [B]ufTag" })
+      vim.keymap.set("n", "<leader>fh", "<cmd>LeaderfHistoryCmd<cr>", { desc = "Leader[F] [H]istoryCmd" })
+      vim.keymap.set("n", "<leader>fr", "<cmd>Leaderf gtags --remove<cr>", { desc = "Leader[F] [R]emove gtags" })
+      vim.keymap.set("n", "<leader>fu", "<cmd>Leaderf gtags --update<cr>", { desc = "Leaderf[F] [U]pdate gtags" })
+      vim.keymap.set("n", "<leader>fg", function() vim.cmd("Leaderf rg -F " .. vim.fn.expand("<cword>")) end, { desc = "Leaderf[F] [G]rep" })
+      -- vim.keymap.set("n", "<leader>p", "<cmd>LeaderfFile<cr>", { desc = "Leader[F] File" })
+      vim.keymap.set("n", "<leader>P", ":Leaderf file --input ", { desc = "Leader[F] File with input" })
+      vim.keymap.set("n", "<leader>o", "<cmd>Leaderf --recall<cr>", { desc = "Leader[F] [R]ecall" })
+      vim.keymap.set("n", "<leader>r", function() vim.cmd("Leaderf gtags -r " .. vim.fn.expand("<cword>") .. " --auto-jump") end, { desc = "Leader[F] gtags [R]eference" })
+      vim.keymap.set("n", "<leader>d", function() vim.cmd("Leaderf gtags -d " .. vim.fn.expand("<cword>") .. " --auto-jump") end, { desc = "Leader[F] gtags [D]efine" })
+      vim.keymap.set("n", "<leader>b", "<cmd>Leaderf git blame<cr>", { desc = "Leader[F] git [B]lame" })
+
+      -- find gtags in git repo
+      local function gtags_cur_gitdir(tag)
+        local git_root, err = get_git_root()
+        if not git_root then
+          vim.notify(err, vim.log.levels.WARN)
+          return
+        end
+
+        vim.notify("Find gtags in git dir: " .. git_root)
+
+        vim.cmd(("Leaderf gtags -d %s -S %s"):format(tag, git_root)) -- will not add to cmd history
+        -- vim.api.nvim_feedkeys((":Leaderf gtags -d %s -S %s\n"):format(tag, git_root), "n", false) -- will not add to cmd history (because of \n)
+
+        -- local cmd = ("Leaderf gtags -d %s -S %s"):format(tag, git_root)
+        -- vim.fn.histadd("cmd", cmd) -- add to cmd history
+        -- vim.cmd(cmd)
+      end
+      vim.keymap.set("n", "<Leader>D", function() gtags_cur_gitdir(vim.fn.expand("<cword>")) end, { desc = "Leader[F] gtags [D]efine in git repo" })
+
+      -- find files in git repo
+      local function files_cur_gitdir()
+        local git_root, err = get_git_root()
+        if not git_root then
+          vim.notify(err, vim.log.levels.WARN)
+          return
+        end
+
+        vim.notify("Find files in git dir: " .. git_root)
+
+        -- NOTE: support cmd: file <dir1> <dir2> --input <filename>
+        -- NOTE: dir should be in subdirectory of cwd
+        vim.api.nvim_feedkeys((":Leaderf file %s --input "):format(git_root), "n", false) -- will add to cmd history (because there is no \n)
+      end
+      vim.keymap.set("n", "<Leader>fp", function() files_cur_gitdir() end, { desc = "Leader[F] files in git repo" })
+
+      -- find files in specific dirs
+      vim.keymap.set("n", "<leader>p", function()
+        local cmd = "Leaderf file /home/sdhm/test/test1 /home/sdhm/test/test2"
+        vim.notify(cmd)
+        vim.cmd("Leaderf file /home/sdhm/test/test1 /home/sdhm/test/test2")
+        vim.fn.histadd("cmd", cmd)
+      end, { desc = "Leader[F] File in specific dirs" })
+
+      -- grep in git repo
+      local function grep_cur_gitdir()
+        local git_root, err = get_git_root()
+        if not git_root then
+          vim.notify(err, vim.log.levels.WARN)
+          return
+        end
+
+        vim.notify("Grep in git dir: " .. git_root)
+
+        -- NOTE: support cmd: rg foo <dir1> <dir2> -e <string>
+        -- NOTE: dir need not be in subdirectory of cwd
+        vim.api.nvim_feedkeys((":Leaderf rg -F %s -e "):format(git_root), "n", false) -- will add to cmd history (because there is no \n)
+      end
+      vim.keymap.set("n", "<Leader>fG", function() grep_cur_gitdir() end, { desc = "Leader[F] [G]rep in git repo" })
     end,
   },
 }
