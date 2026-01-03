@@ -21,7 +21,10 @@ return {
         timer = 300,
       },
       system_clipboard = {
-        sync_with_ring = true,
+        -- https://github.com/gbprod/yanky.nvim?tab=readme-ov-file#system_clipboardsync_with_ring
+        -- Yanky can automatically adds to ring history yanks that occurs outside of Neovim. This works regardless to your &clipboard setting.
+        -- WARN: if you not config clipboard provider, should disable it, or will produce warning: `clipboard: No provider. Try ":checkhealth" or ":h clipboard".`
+        sync_with_ring = false,
       },
       preserve_cursor_position = {
         enabled = true,
