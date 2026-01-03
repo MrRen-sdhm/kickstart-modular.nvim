@@ -156,7 +156,9 @@ return {
               opts = {
                   -- options for blink-cmp-dictionary
                   -- english words txt: https://raw.githubusercontent.com/dwyl/english-words/refs/heads/master/words.txt
-                  dictionary_directories = { vim.fn.expand('~/.config/nvim/dictionary') }
+                  dictionary_directories = {
+                    vim.fn.stdpath("config") .. "/dictionary",
+                  }
               },
               score_offset = -100, -- lowest priority
           },
