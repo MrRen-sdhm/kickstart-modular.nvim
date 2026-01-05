@@ -36,10 +36,24 @@ return {
         },
       },
     },
+    styles = {
+      notification_history = {
+        border = true,
+        zindex = 100,
+        width = 0.6,
+        height = 0.6,
+        minimal = false,
+        title = " Notification History ",
+        title_pos = "center",
+        ft = "markdown",
+        keys = { q = "close" },
+      },
+    },
   },
   keys = {
     { "<leader>tt", function() Snacks.terminal() end, desc = "[T]oggle [T]erminal" },
-    { "<leader>n", function() Snacks.notifier.show_history() end, desc = "[N]otify history" },
+    { "<leader>n", function() Snacks.notifier.show_history() end, desc = "[N]otification History" },
+    -- { "<leader>n", function() Snacks.picker.notifications() end, desc = "[N]otification History" },
   },
   init = function ()
     vim.api.nvim_create_user_command("NotifyHistory", function()

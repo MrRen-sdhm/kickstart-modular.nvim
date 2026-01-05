@@ -27,6 +27,9 @@ return {
       on_attach = function(bufnr)
         local gitsigns = require 'gitsigns'
 
+        -- change the base revision of all buffers
+        gitsigns.change_base("HEAD~1", true)
+
         local function map(mode, l, r, opts)
           opts = opts or {}
           opts.buffer = bufnr
@@ -35,6 +38,14 @@ return {
 
         -- Navigation
         map('n', ']c', function()
+          if vim.wo.diff then
+            vim.cmd.normal { ']c', bang = true }
+          else
+            gitsigns.nav_hunk 'next'
+          end
+        end, { desc = 'Jump to next git [c]hange' })
+
+        map('n', '<leader>c', function()
           if vim.wo.diff then
             vim.cmd.normal { ']c', bang = true }
           else

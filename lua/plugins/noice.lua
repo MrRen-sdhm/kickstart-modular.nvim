@@ -1,6 +1,7 @@
 return {
   "folke/noice.nvim",
   event = "VeryLazy",
+  enabled = false,
   opts = {
     lsp = {
       override = {
@@ -27,18 +28,18 @@ return {
       command_palette = true,
       long_message_to_split = true,
     },
-    views = {
-      cmdline_popup = {
-        position = {
-          row = 20,
-          col = "50%",
-        },
-        size = {
-          width = 65,
-          height = "auto",
-        },
-      },
-    },
+    -- views = {
+    --   cmdline_popup = {
+    --     position = {
+    --       row = 20,
+    --       col = "50%",
+    --     },
+    --     size = {
+    --       width = 65,
+    --       height = "auto",
+    --     },
+    --   },
+    -- },
   },
 
   keys = {

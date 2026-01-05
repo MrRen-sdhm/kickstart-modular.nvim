@@ -89,6 +89,20 @@ return {
         return result[1]
       end
 
+      local function get_repo_root()
+        local current_file_dir = vim.fn.expand("%:p:h")
+        local repo_dir = vim.fn.finddir(".repo", current_file_dir .. ";") -- /home/sdhm/test/.repo
+
+        if repo_dir == "" then
+          return nil, "Not inside a repo project"
+        end
+        -- vim.notify("Repo dir: " .. repo_dir)
+
+        local repo_root = vim.fn.fnamemodify(repo_dir, ":p:h:h")
+        -- vim.notify("Repo root: " .. repo_root)
+        return repo_root
+      end
+
       vim.keymap.set("n", "<leader>fb", "<cmd>LeaderfBuffer<cr>", { desc = "Leader[F] [B]uffer" })
       vim.keymap.set("n", "<leader>fl", "<cmd>LeaderfLine<cr>", { desc = "Leader[F] [L]ine" })
       vim.keymap.set("n", "<leader>fM", "<cmd>LeaderfMru<cr>", { desc = "Leader[F] [M]ru" })
@@ -142,12 +156,33 @@ return {
       vim.keymap.set("n", "<Leader>fp", function() files_cur_gitdir() end, { desc = "Leader[F] files in git repo" })
 
       -- find files in specific dirs
-      vim.keymap.set("n", "<leader>p", function()
-        local cmd = "Leaderf file /home/sdhm/test/test1 /home/sdhm/test/test2"
-        vim.notify(cmd)
-        vim.cmd("Leaderf file /home/sdhm/test/test1 /home/sdhm/test/test2")
+      -- vim.keymap.set("n", "<leader>p", function()
+      --   local cmd = "Leaderf file ~/test/test1 ~/test/test2"
+      --   vim.notify(cmd)
+      --   vim.cmd("Leaderf file ~/test/test1 ~/test/test2")
+      --   vim.fn.histadd("cmd", cmd)
+      -- end, { desc = "Leader[F] File in specific dirs" })
+
+      -- find files in repo dirs
+      local function files_in_repo_dirs()
+        local repo_root, error_message = get_repo_root()
+
+        if not repo_root then
+          vim.notify(error_message, vim.log.levels.WARN)
+          return
+        end
+
+        local search_directories = {
+          repo_root .. "/test1",
+          repo_root .. "/test2",
+        }
+
+        local cmd = "Leaderf file " .. table.concat(search_directories, " ") .. " --nameOnly"
+        -- vim.notify(cmd)
+        vim.cmd(cmd)
         vim.fn.histadd("cmd", cmd)
-      end, { desc = "Leader[F] File in specific dirs" })
+      end
+      vim.keymap.set("n", "<leader>p", files_in_repo_dirs, { desc = "Leader[F] File in repo dirs"})
 
       -- grep in git repo
       local function grep_cur_gitdir()
