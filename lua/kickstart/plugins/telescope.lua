@@ -73,7 +73,7 @@ return {
               prompt_position = "top",
               mirror = true,
               height = 0.8,
-              width = 0.6
+              width = 0.8,
             }
           },
           sorting_strategy = "ascending",

@@ -15,6 +15,26 @@ return {
         on_colors = function(c)
           -- c.bg = "#202232"
 
+          -- bg of tokyonight-night
+          -- c.bg = "#16161e"
+
+          -- bg of molokai
+          c.bg = "#121212"
+          c.bg_popup = "#121212"
+          c.bg_float = "#121212"
+          c.bg_sidebar = "#121212"
+
+          -- color of molokai
+          -- c.red = "#ff5fff"
+          c.orange = "#ff8700"
+          -- c.yellow = "#d7d787"
+          -- c.green = "#afd787"
+          -- c.blue = "#5fd7ff"
+          c.magenta = "#af5fff"
+          -- c.cyan = "#87d7ff"
+          -- c.gray = "#5f5f5f"
+
+          -- color of tokyonight-moon
           -- c.bg = "#222436"
           -- c.bg_dark = "#1e2030"
           -- c.bg_dark1 = "#191B29"
@@ -25,15 +45,16 @@ return {
           -- c.bg_sidebar = "#1e2030"
           -- c.bg_statusline = "#1e2030"
           -- c.bg_visual = "#2d3f76"
-          -- c.bg_dark = "#1e2030"
-          -- c.bg_dark1 = "#191B29"
-          -- c.bg_float = "#1e2030"
-          -- c.bg_highlight = "#2f334d"
-          -- c.bg_popup = "#1e2030"
-          -- c.bg_search = "#3e68d7"
-          -- c.bg_sidebar = "#1e2030"
-          -- c.bg_statusline = "#1e2030"
-          -- c.bg_visual = "#2d3f76"
+        end,
+        on_highlights = function(hl)
+          hl.String      = { fg = "#9ece6a" }
+          -- hl.Comment     = { fg = "#87d7ff" }
+          -- hl.Number      = { fg = "#af5fff" }
+          -- hl.Boolean     = { fg = "#af5fff" }
+          -- hl.Keyword     = { fg = "#F92672" }
+          -- hl.Function    = { fg = "#A6E22E" }
+          -- hl.Identifier  = { fg = "#FD971F" }
+          -- hl.Type        = { fg = "#66D9EF" }
         end,
       }
 
