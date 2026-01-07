@@ -8,6 +8,17 @@ vim.api.nvim_create_autocmd("VimEnter", {
   end,
 })
 
+-- Toggle signcolumn
+vim.keymap.set('n', '<leader>ts', function()
+  local sc = vim.wo.signcolumn
+  vim.wo.signcolumn = (sc == 'no') and 'yes' or 'no'
+end, { desc = '[T]oggle [S]igncolumn' })
+
+-- Toggle relative number
+vim.keymap.set('n', '<leader>tr', function()
+  vim.wo.relativenumber = not vim.wo.relativenumber
+end, { desc = '[T]oggle [R]elative Number' })
+
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')

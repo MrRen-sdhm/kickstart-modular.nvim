@@ -160,8 +160,20 @@ return {
 
       vim.keymap.set('n', '<leader>sb', builtin.current_buffer_fuzzy_find,
         { desc = 'Fuzzily search in current buffer' })
-      vim.keymap.set('n', '<leader>l', builtin.current_buffer_fuzzy_find,
-        { desc = 'Fuzzily search in current buffer' })
+      vim.keymap.set('n', '<leader>l', function()
+        builtin.current_buffer_fuzzy_find {
+          previewer = false,
+          layout_strategy = "vertical",
+          layout_config = {
+            vertical = {
+              prompt_position = "top",
+              mirror = true,
+              height = 0.4,
+              width = 0.6
+            }
+          },
+        }
+      end, { desc = 'Fuzzily search in current buffer' })
 
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()

@@ -88,4 +88,10 @@ vim.o.confirm = true
 -- Auto restore cursor position when opening a file
 vim.cmd [[autocmd BufReadPost * if line("'\"") > 0 | exe "normal! g'\"" | endif]]
 
+-- Color column
+vim.o.colorcolumn = '81'
+
+-- Color column of gitcommit
+vim.cmd [[autocmd FileType gitcommit set colorcolumn=71]]
+
 -- vim: ts=2 sts=2 sw=2 et
