@@ -22,8 +22,19 @@ return {
       -- change the base revision of all buffers
       gitsigns.change_base("HEAD~1", true)
 
+      -- line number highlight
+      vim.cmd([[
+          highlight GitSignsAddNr          ctermfg=51  guifg=#00d7ff
+          highlight GitSignsChangeNr       ctermfg=202 guifg=#ff5f00
+          highlight GitSignsDeleteNr       ctermfg=9   guifg=#ff0000
+          highlight GitSignsChangeDeleteNr ctermfg=165 guifg=#d700ff
+        ]]
+      )
+
       require('gitsigns').setup({
           -- Your gitsigns configuration here
+        signcolumn = false,
+        numhl = true,
         signs = {
           add = { text = '+' },
           change = { text = '~' },
