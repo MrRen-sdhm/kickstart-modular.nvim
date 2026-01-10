@@ -14,7 +14,7 @@ return {
     scroll = { enabled = true, }, -- Smooth scrolling
     bigfile = { enabled = true },
     indent = {
-      enabled = true,
+      enabled = false,
       indent = {
         only_scope = true, -- only show indent guides of the scope
         only_current = true -- only show indent guides in the current window

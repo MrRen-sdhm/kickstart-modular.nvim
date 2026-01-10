@@ -3,6 +3,18 @@ return {
     "Yggdroot/LeaderF",
     event = "VeryLazy",
 
+    dependencies = {
+      'skywind3000/Leaderf-snippet',
+      config = function()
+        vim.keymap.set('i', '<C-x><C-x>', '<C-\\><C-O>:Leaderf snippet<CR>')
+        vim.cmd([[
+          let g:Lf_PreviewResult = get(g:, 'Lf_PreviewResult', {})
+          let g:Lf_PreviewResult.snippet = 0
+          ]]
+        )
+      end
+    },
+
     init = function()
       vim.g.Lf_HideHelp = 1
       vim.g.Lf_UseCache = 0
@@ -47,6 +59,7 @@ return {
 
       -- popup color scheme for tokyonight
       vim.g.Lf_PopupPalette = {
+      -- tokyonight style
       dark = {
         Lf_hl_match              = { gui='NONE', font='NONE', guifg='#ff5f00', guibg='NONE', cterm='NONE', ctermfg='202', ctermbg='NONE' }, -- match
         Lf_hl_match0             = { gui='NONE', font='NONE', guifg='#ff5f00', guibg='NONE', cterm='NONE', ctermfg='202', ctermbg='NONE' }, -- match
@@ -103,12 +116,12 @@ return {
         return repo_root
       end
 
+      vim.keymap.set("n", "<leader><leader>", "<cmd>LeaderfBuffer<cr>", { desc = "Leader[F] Buffer" })
       vim.keymap.set("n", "<leader>fb", "<cmd>LeaderfBuffer<cr>", { desc = "Leader[F] [B]uffer" })
-      vim.keymap.set("n", "<leader>fl", "<cmd>LeaderfLine<cr>", { desc = "Leader[F] [L]ine" })
       vim.keymap.set("n", "<leader>fM", "<cmd>LeaderfMru<cr>", { desc = "Leader[F] [M]ru" })
       vim.keymap.set("n", "<leader>fm", "<cmd>Leaderf mru --project<cr>", { desc = "Leader[F] [M]ru in project" })
       vim.keymap.set("n", "<leader>fF", "<cmd>Leaderf function --no-sort<cr>", { desc = "Leader[F] [F]unction" })
-      vim.keymap.set("n", "<leader>ft", "<cmd>LeaderfBufTag<cr>", { desc = "Leader[F] [B]ufTag" })
+      vim.keymap.set("n", "<leader>ff", "<cmd>LeaderfBufTag<cr>", { desc = "Leader[F] [B]ufTag" })
       vim.keymap.set("n", "<leader>fh", "<cmd>LeaderfHistoryCmd<cr>", { desc = "Leader[F] [H]istoryCmd" })
       vim.keymap.set("n", "<leader>fr", "<cmd>Leaderf gtags --remove<cr>", { desc = "Leader[F] [R]emove gtags" })
       vim.keymap.set("n", "<leader>fu", "<cmd>Leaderf gtags --update<cr>", { desc = "Leaderf[F] [U]pdate gtags" })
@@ -116,9 +129,12 @@ return {
       -- vim.keymap.set("n", "<leader>p", "<cmd>LeaderfFile<cr>", { desc = "Leader[F] File" })
       vim.keymap.set("n", "<leader>P", ":Leaderf file --input ", { desc = "Leader[F] File with input" })
       vim.keymap.set("n", "<leader>o", "<cmd>Leaderf --recall<cr>", { desc = "Leader[F] [R]ecall" })
-      vim.keymap.set("n", "<leader>r", function() vim.cmd("Leaderf gtags -r " .. vim.fn.expand("<cword>") .. " --auto-jump") end, { desc = "Leader[F] gtags [R]eference" })
-      vim.keymap.set("n", "<leader>d", function() vim.cmd("Leaderf gtags -d " .. vim.fn.expand("<cword>") .. " --auto-jump") end, { desc = "Leader[F] gtags [D]efine" })
+      vim.keymap.set("n", "<leader>r", function() vim.cmd("Leaderf gtags -r " .. vim.fn.expand("<cword>")) end, { desc = "Leader[F] gtags [R]eference" })
+      vim.keymap.set("n", "<leader>d", function() vim.cmd("Leaderf gtags -d " .. vim.fn.expand("<cword>")) end, { desc = "Leader[F] gtags [D]efine" })
+      vim.keymap.set("n", "<leader>l", "<cmd>LeaderfLine<cr>", { desc = "Leader[F] [L]ine" })
       vim.keymap.set("n", "<leader>b", "<cmd>Leaderf git blame<cr>", { desc = "Leader[F] git [B]lame" })
+      -- vim.keymap.set("n", "<leader>i", "Leaderf snippet<cr>", { desc = "Leader[F] snippet" }) -- Insert snippet at current cursor position
+      -- vim.keymap.set("n", "<leader>i", "o<C-\\><C-O>:Leaderf snippet<CR>", { desc = "Leader[F] snippet" }) -- Insert line below and insert snippet
 
       -- find gtags in git repo
       local function gtags_cur_gitdir(tag)

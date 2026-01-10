@@ -23,6 +23,8 @@ return {
     options = {
       mode = "tabs", -- only show tabs
       always_show_bufferline = true,
+      show_buffer_close_icons = false,
+      max_name_length = 28,
       -- custom_filter = function(bufnr, _) -- only show current buffer
       --   return bufnr == vim.api.nvim_get_current_buf()
       -- end,

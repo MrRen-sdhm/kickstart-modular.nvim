@@ -28,6 +28,9 @@ return {
               require('luasnip.loaders.from_vscode').lazy_load()
             end,
           },
+          {
+            'benfowler/telescope-luasnip.nvim',
+          }
         },
         config = function()
           -- load snipmate formate snippets (e.g. ~/.config/nvim/snippets/c.snippets)
@@ -37,6 +40,9 @@ return {
           vim.api.nvim_create_user_command("LuaSnipEdit", function()
             require("luasnip.loaders").edit_snippet_files()
           end, { desc = "Edit LuaSnip snippet files", })
+
+          -- vim.keymap.set("n", "<leader>i", "Telescope luasnip<CR>", { desc = "Insert snippet" } ) -- Insert snippet at current cursor position
+          vim.keymap.set("n", "<leader>i", "o<Space><Cmd>Telescope luasnip<CR>", { desc = "Insert snippet" } ) -- Insert line below and insert snippet
         end,
         opts = {},
       },
@@ -145,7 +151,7 @@ return {
           },
           path = { score_offset = 3 }, -- path default score_offset (priority) = 3
           buffer = { score_offset = -3 }, -- buffer default score_offset (priority) = -3
-          snippets = { score_offset = 1 }, -- snippets default score_offset (priority) = -1
+          snippets = { score_offset = 150 }, -- snippets default score_offset (priority) = -1
           dictionary = {
               -- https://github.com/Kaiser-Yang/blink-cmp-dictionary
               module = 'blink-cmp-dictionary',

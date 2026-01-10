@@ -105,6 +105,15 @@ return {
               }
             },
           },
+          lsp_document_symbols = {
+            show_line = true,
+            symbol_width = 30,
+          },
+          treesitter = {
+            show_line = true,
+            symbol_width = 30,
+            -- symbols = { "Function", "Method" },
+          }
         },
         extensions = {
           ['ui-select'] = {
@@ -136,6 +145,7 @@ return {
       pcall(require('telescope').load_extension, 'ui-select')
       pcall(require('telescope').load_extension, 'aerial')
       pcall(require('telescope').load_extension, 'yank_history')
+      pcall(require('telescope').load_extension, 'luasnip')
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
@@ -151,17 +161,17 @@ return {
       vim.keymap.set('n', '<leader>sm', builtin.oldfiles, { desc = '[S]earch [M]ost Recent Files' })
       vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
 
-      vim.keymap.set("n", "<leader>ff", function()
+      vim.keymap.set("n", "<leader>sF", function()
         builtin.lsp_document_symbols {
           symbols = { "Function", "Method" },
           prompt_title = 'Find Functions'
         }
       end, { desc = "[F]ind [F]unctions"})
 
-      vim.keymap.set('n', '<leader>sb', builtin.current_buffer_fuzzy_find,
-        { desc = 'Fuzzily search in current buffer' })
-      vim.keymap.set('n', '<leader>l', function()
-        builtin.current_buffer_fuzzy_find {
+      -- vim.keymap.set('n', '<leader>sl', builtin.current_buffer_fuzzy_find,
+      --   { desc = 'Fuzzily search in current buffer' })
+      vim.keymap.set('n', '<leader>sl', function()
+        builtin.current_buffer_fuzzlllind {
           previewer = false,
           layout_strategy = "vertical",
           layout_config = {

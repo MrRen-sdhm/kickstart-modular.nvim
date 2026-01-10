@@ -30,8 +30,8 @@ return {
       -- }
     })
 
-    vim.keymap.set('n', '<leader>ss', "<cmd>PossessionSave<CR>", { desc = '[S]ession save' })
-    vim.keymap.set('n', '<leader>sS', "<cmd>PossessionSaveCwd<CR>", { desc = '[S]ession save Cwd' })
+    vim.keymap.set('n', '<leader>sS', "<cmd>PossessionSave<CR>", { desc = '[S]ession save' })
+    -- vim.keymap.set('n', '<leader>sS', "<cmd>PossessionSaveCwd<CR>", { desc = '[S]ession save Cwd' })
     vim.keymap.set('n', '<leader>sp', "<cmd>PossessionPick<CR>", { desc = '[S]ession pick' })
   end
 }

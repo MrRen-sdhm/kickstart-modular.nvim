@@ -23,7 +23,7 @@ return {
           c.bg = "#121212"
           c.bg_popup = "#121212"
           c.bg_float = "#121212"
-          c.bg_visual = "#1c1c1c"
+          c.bg_visual = "#262626"
           c.bg_sidebar = "#121212"
           c.bg_statusline = "#202020"
 
@@ -35,13 +35,13 @@ return {
 
           -- color of molokai
           -- c.red = "#ff5fff"
-          c.orange = "#ff8700"
+          -- c.orange = "#ff8700"
           -- c.yellow = "#d7d787"
           -- c.green = "#afd787"
           -- c.blue = "#5fd7ff"
-          c.magenta = "#af5fff"
+          -- c.magenta = "#af5fff"
           -- c.cyan = "#87d7ff"
-          c.gray = "#5f5f5f"
+          -- c.gray = "#5f5f5f"
         end,
         -- highlight groups: https://github.com/folke/tokyonight.nvim/blob/main/lua/tokyonight/groups/base.lua
         on_highlights = function(hl)
