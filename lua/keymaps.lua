@@ -19,6 +19,9 @@ vim.keymap.set('n', '<leader>tr', function()
   vim.wo.relativenumber = not vim.wo.relativenumber
 end, { desc = '[T]oggle [R]elative Number' })
 
+-- Toggle warp
+vim.keymap.set('n', '<leader>t<enter>', '<cmd>set wrap!<CR>', { desc = '[T]oggle [W]rap' })
+
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')

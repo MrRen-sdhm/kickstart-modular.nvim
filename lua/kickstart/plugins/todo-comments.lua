@@ -11,6 +11,7 @@ return {
       },
       highlight = {
         multiline = false, -- disable multiline comment
+        -- after = "", -- do not highlight words after keyword
       }
     }
   },
