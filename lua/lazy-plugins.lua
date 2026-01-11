@@ -80,6 +80,7 @@ require('lazy').setup({
   { "bluz71/vim-moonfly-colors", name = "moonfly", lazy = true },
   { "tiagovla/tokyodark.nvim", lazy = true },
 
+  require 'plugins.tokyonight-molokai',
   require 'plugins.flash',
   require 'plugins.persistence',
   require 'plugins.possession',

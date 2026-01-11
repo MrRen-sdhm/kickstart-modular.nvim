@@ -5,6 +5,7 @@ return {
     --
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
     'folke/tokyonight.nvim',
+    enabled = true,
     priority = 1000, -- Make sure to load this before all the other start plugins.
     config = function()
       local use_molokai = true
@@ -13,7 +14,12 @@ return {
       require('tokyonight').setup {
         styles = {
           comments = { italic = false }, -- Disable italics in comments
+          keywords = { italic = true },
         },
+        -- plugins = {
+        --   all = false,
+        -- },
+
         -- default color: https://github.com/folke/tokyonight.nvim/blob/main/extras/lua/tokyonight_moon.lua
         on_colors = function(c)
           if not use_molokai then
@@ -65,7 +71,6 @@ return {
           hl.NonText      = { fg = "#5f5f5f" }
           hl.CursorColumn = { bg = "#303030" }
           hl.ColorColumn  = { bg = "#303030" }
-          hl.Comment      = { fg = "#5f5f5f" }
           hl.CursorLine   = { bg = "#1c1c1c" }
           hl.CursorLineNr = { fg = "#ff8700" }
           hl.Whitespace   = { fg = "#5f5f5f" } -- "nbsp", "space", "tab" and "trail" in 'listchars'

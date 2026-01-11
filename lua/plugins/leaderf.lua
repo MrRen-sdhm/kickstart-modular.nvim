@@ -19,7 +19,8 @@ return {
       vim.g.Lf_HideHelp = 1
       vim.g.Lf_UseCache = 0
       vim.g.Lf_UseVersionControlTool = 0
-      vim.g.Lf_StlSeparator = { left = '', right = '' }
+      -- vim.g.Lf_StlSeparator = { left = '', right = '' }
+      vim.g.Lf_StlSeparator = { left = '', right = '' }
       vim.g.Lf_ShowDevIcons = 1
       vim.g.Lf_SpacesAfterIcon = " "
       vim.g.Lf_IgnoreCurrentBufferName = 1
@@ -63,7 +64,8 @@ return {
       dark = {
         Lf_hl_match              = { gui='NONE', font='NONE', guifg='#ff5f00', guibg='NONE', cterm='NONE', ctermfg='202', ctermbg='NONE' }, -- match
         Lf_hl_match0             = { gui='NONE', font='NONE', guifg='#ff5f00', guibg='NONE', cterm='NONE', ctermfg='202', ctermbg='NONE' }, -- match
-        Lf_hl_popup_blank        = { gui='NONE', font='NONE', guifg='NONE',    guibg='#1e2030', cterm='NONE', ctermfg='239', ctermbg='NONE' }, -- status line
+        -- Lf_hl_popup_blank        = { gui='NONE', font='NONE', guifg='NONE',    guibg='#1e2030', cterm='NONE', ctermfg='239', ctermbg='NONE' }, -- status line
+        Lf_hl_popup_blank        = { gui = "NONE", font = "NONE", guifg = "NONE",    guibg = "#202020", cterm = "NONE", ctermfg = 239, ctermbg = "NONE" },
 
         -- Lf_hl_popup_inputText    = { gui='NONE', font='NONE', guifg='#87d7pf', guibg='#1e2030', cterm='NONE', ctermfg='117', ctermbg='239' }, -- input text (use bg same to status line)
         Lf_hl_popup_inputText    = { gui='NONE', font='NONE', guifg='#87d7pf', guibg='NONE', cterm='NONE', ctermfg='117', ctermbg='239' }, -- input text
@@ -79,7 +81,9 @@ return {
         Lf_hl_popup_fullPathMode = { gui='NONE', font='NONE', guifg='#1c1c1c', guibg='#9ab8ff', cterm='NONE', ctermfg='234', ctermbg='249' }, -- section_c
         Lf_hl_popup_fuzzyMode    = { gui='NONE', font='NONE', guifg='#1c1c1c', guibg='#9ab8ff', cterm='NONE', ctermfg='234', ctermbg='249' }, -- section_c
         Lf_hl_popup_regexMode    = { gui='NONE', font='NONE', guifg='#1c1c1c', guibg='#9ab8ff', cterm='NONE', ctermfg='234', ctermbg='108' }, -- section_c
-        Lf_hl_popup_cwd          = { gui='NONE', font='NONE', guifg='#82aaff', guibg='#3b4261', cterm='NONE', ctermfg='228', ctermbg='243' }, -- section_d
+        -- Lf_hl_popup_cwd          = { gui='NONE', font='NONE', guifg='#82aaff', guibg='#3b4261', cterm='NONE', ctermfg='228', ctermbg='243' }, -- section_d
+        Lf_hl_popup_cwd          = { gui='NONE', font='NONE', guifg='#eeeeee', guibg='#202020', cterm='NONE', ctermfg='228', ctermbg='243' }, -- section_d
+        -- Lf_hl_popup_cwd          = { gui='NONE', font='NONE', guifg='#eeeeee', guibg='#3b4261', cterm='NONE', ctermfg='228', ctermbg='243' }, -- section_d
         Lf_hl_popup_lineInfo     = { gui='NONE', font='NONE', guifg='#303030', guibg='#9ab8ff', cterm='NONE', ctermfg='236', ctermbg='254' }, -- top right
         Lf_hl_popup_total        = { gui='NONE', font='NONE', guifg='#303030', guibg='#82aaff', cterm='NONE', ctermfg='236', ctermbg='151' }, -- top right
 
@@ -87,6 +91,32 @@ return {
         -- Lf_hl_popupBorder        = { gui='bold', font='bold', guifg='#5d91fd', guibg='NONE', cterm='bold', ctermfg='NONE', ctermbg='NONE' }, -- border
         Lf_hl_popupBorder        = { gui='bold', font='bold', guifg='#82aaff', guibg='NONE', cterm='bold', ctermfg='NONE', ctermbg='NONE' }, -- border
       },
+
+      -- default
+      -- dark = {
+      --   Lf_hl_match              = { gui = "NONE", font = "NONE", guifg = "#ff5f00", guibg = "NONE",    cterm = "NONE", ctermfg = 202, ctermbg = "NONE" },
+      --   Lf_hl_match0             = { gui = "NONE", font = "NONE", guifg = "#ff5f00", guibg = "NONE",    cterm = "NONE", ctermfg = 202, ctermbg = "NONE" },
+      --   -- Lf_hl_popup_blank        = { gui = "NONE", font = "NONE", guifg = "NONE",    guibg = "#4e4e4e", cterm = "NONE", ctermfg = 239, ctermbg = "NONE" },
+      --   -- Lf_hl_popup_inputText    = { gui = "NONE", font = "NONE", guifg = "#87d7ff", guibg = "#4e4e4e", cterm = "NONE", ctermfg = 117, ctermbg = 239 },
+      --   Lf_hl_popup_inputText    = { gui='NONE', font='NONE', guifg='#87d7pf', guibg='NONE', cterm='NONE', ctermfg='117', ctermbg='239' }, -- input text
+      --   Lf_hl_cursorline         = { gui = "NONE", font = "NONE", guifg = "#ffff00", guibg = "NONE",    cterm = "NONE", ctermfg = 226, ctermbg = "NONE" },
+      --   Lf_hl_popup_prompt       = { gui = "NONE", font = "NONE", guifg = "#ffd75f", guibg = "NONE",    cterm = "NONE", ctermfg = 221, ctermbg = "NONE" },
+      --   Lf_hl_popup_spin         = { gui = "NONE", font = "NONE", guifg = "#d7d75f", guibg = "NONE",    cterm = "NONE", ctermfg = 185, ctermbg = "NONE" },
+      --   Lf_hl_popup_normalMode   = { gui = "bold", font = "bold", guifg = "#5f5f00", guibg = "#d7d7af", cterm = "bold", ctermfg = 58,  ctermbg = 187 },
+      --   Lf_hl_popup_inputMode    = { gui = "bold", font = "bold", guifg = "#005f5f", guibg = "#87afaf", cterm = "bold", ctermfg = 23,  ctermbg = 109 },
+      --   Lf_hl_popup_category     = { gui = "NONE", font = "NONE", guifg = "#eeeeee", guibg = "#626262", cterm = "NONE", ctermfg = 255, ctermbg = 241 },
+      --   Lf_hl_popup_nameOnlyMode = { gui = "NONE", font = "NONE", guifg = "#1c1c1c", guibg = "#d7af5f", cterm = "NONE", ctermfg = 234, ctermbg = 179 },
+      --   Lf_hl_popup_fullPathMode = { gui = "NONE", font = "NONE", guifg = "#1c1c1c", guibg = "#b2b2b2", cterm = "NONE", ctermfg = 234, ctermbg = 249 },
+      --   Lf_hl_popup_fuzzyMode    = { gui = "NONE", font = "NONE", guifg = "#1c1c1c", guibg = "#b2b2b2", cterm = "NONE", ctermfg = 234, ctermbg = 249 },
+      --   Lf_hl_popup_regexMode    = { gui = "NONE", font = "NONE", guifg = "#1c1c1c", guibg = "#87af87", cterm = "NONE", ctermfg = 234, ctermbg = 108 },
+      --   Lf_hl_popup_cwd          = { gui = "NONE", font = "NONE", guifg = "#eeeeee", guibg = "#767676", cterm = "NONE", ctermfg = 228, ctermbg = 243 },
+      --   Lf_hl_popup_lineInfo     = { gui = "NONE", font = "NONE", guifg = "#303030", guibg = "#e4e4e4", cterm = "NONE", ctermfg = 236, ctermbg = 254 },
+      --   Lf_hl_popup_total        = { gui = "NONE", font = "NONE", guifg = "#303030", guibg = "#afd7af", cterm = "NONE", ctermfg = 236, ctermbg = 151 },
+      --   -- Lf_hl_popup_window       = { gui = "NONE", font = "NONE", guifg = "#eeeeee", guibg = "#262626", cterm = "NONE", ctermfg = 255, ctermbg = 235 },
+      --
+      --   Lf_hl_popupBorder        = { gui='bold', font='bold', guifg='#82aaff', guibg='NONE', cterm='bold', ctermfg='NONE', ctermbg='NONE' }, -- border
+      -- },
+
     }
     end,
 

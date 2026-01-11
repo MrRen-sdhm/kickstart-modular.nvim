@@ -3,10 +3,16 @@ return {
     event = "VeryLazy",
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
+      -- local tokyonight_molokai = require("lualine.themes._tokyonight").get("moon")
+      -- tokyonight_molokai.normal.c.bg = '#202020'
+      -- tokyonight_molokai.normal.c.fg = '#eeeeee'
+
       require("lualine").setup({
         options = {
           -- theme = "auto",
           theme = 'tokyonight-moon',
+          -- theme = 'tokyonight-night',
+          -- theme = tokyonight_molokai, -- custom theme
           -- section_separators = { left = '', right = '' },
           -- component_separators = { left = '', right = '' },
           component_separators = { left = '', right = '' },

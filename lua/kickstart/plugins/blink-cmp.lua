@@ -42,7 +42,7 @@ return {
           end, { desc = "Edit LuaSnip snippet files", })
 
           -- vim.keymap.set("n", "<leader>i", "Telescope luasnip<CR>", { desc = "Insert snippet" } ) -- Insert snippet at current cursor position
-          vim.keymap.set("n", "<leader>i", "o<Space><Cmd>Telescope luasnip<CR>", { desc = "Insert snippet" } ) -- Insert line below and insert snippet
+          vim.keymap.set("n", "<leader>i", "o<Cmd>Telescope luasnip<CR>", { desc = "Insert snippet" } ) -- Insert line below and insert snippet
         end,
         opts = {},
       },
