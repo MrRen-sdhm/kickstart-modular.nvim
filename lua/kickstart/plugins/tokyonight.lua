@@ -55,7 +55,7 @@ return {
             return
           end
 
-          hl.String      = { fg = "#8ece6a" }
+          -- hl.String      = { fg = "#8ece6a" }
           hl.Comment     = { fg = "#5f5f5f" }
           -- hl.SignColumn  = { bg = "#303030" }
           -- hl.Number      = { fg = "#af5fff" }
@@ -64,9 +64,9 @@ return {
           -- hl.Function    = { fg = "#A6E22E" }
           -- hl.Identifier  = { fg = "#FD971F" }
           -- hl.Type        = { fg = "#66D9EF" }
-          -- hl.LineNr       = { fg="#bcbcbc", bg="#303030" }
+          hl.LineNr       = { fg="#bcbcbc", bg="#303030" }
           -- hl.LineNr       = { fg="#bcbcbc" }
-          hl.LineNr       = { fg = "#5f5f5f" }
+          -- hl.LineNr       = { fg = "#5f5f5f" }
           hl.SpecialKey   = { fg = "#5f5f5f" }
           hl.NonText      = { fg = "#5f5f5f" }
           hl.CursorColumn = { bg = "#303030" }
@@ -75,6 +75,7 @@ return {
           hl.CursorLineNr = { fg = "#ff8700" }
           hl.Whitespace   = { fg = "#5f5f5f" } -- "nbsp", "space", "tab" and "trail" in 'listchars'
           hl.WinSeparator = { fg = "#808080", bold=true } -- the column separating vertically split windows
+          hl.EndOfBuffer  = { fg="#5f5f5f" }
         end,
       }
 

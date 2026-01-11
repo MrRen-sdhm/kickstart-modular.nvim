@@ -1,6 +1,6 @@
 return {
   {
-    "Yggdroot/LeaderF",
+    "MrRen-sdhm/LeaderF",
     event = "VeryLazy",
 
     dependencies = {

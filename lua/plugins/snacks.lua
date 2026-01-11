@@ -67,6 +67,16 @@ return {
         Snacks.toggle.indent():map("<leader>ti") -- toggle indent guides
       end,
     })
+
+    -- do not show endofbuffer for snacks_dashboard
+    vim.api.nvim_create_autocmd("User", {
+      pattern = "SnacksDashboard*",
+      callback = function()
+        if vim.bo.filetype == "snacks_dashboard" then
+          vim.opt_local.fillchars:append({ eob = " " })
+        end
+      end,
+    })
   end
 }
 
