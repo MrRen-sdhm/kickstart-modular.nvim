@@ -29,7 +29,7 @@ return {
             end,
           },
           {
-            'benfowler/telescope-luasnip.nvim',
+            'MrRen-sdhm/telescope-luasnip.nvim',
           }
         },
         config = function()
