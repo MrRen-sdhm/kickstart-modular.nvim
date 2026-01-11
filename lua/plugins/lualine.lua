@@ -65,6 +65,12 @@ return {
             --   cond = require("noice").api.status.search.has,
             --   color = { fg = "#ff9e64" },
             -- },
+
+            -- {
+            --   'searchcount',
+            --   maxcount = 999,
+            --   timeout = 500,
+            -- },
             {
               'encoding',
             },
@@ -107,7 +113,7 @@ return {
               "progress",
             },
           },
-        }
+        },
       })
     end
 }

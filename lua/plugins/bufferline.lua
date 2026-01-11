@@ -1,5 +1,6 @@
 return {
   "akinsho/bufferline.nvim",
+  enabled = true,
   -- event = "VeryLazy", -- WARN: will show bufferline on snacks dashbord
   lazy = false,
   keys = {
