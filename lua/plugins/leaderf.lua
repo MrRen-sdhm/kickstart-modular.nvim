@@ -155,7 +155,7 @@ return {
       vim.keymap.set("n", "<leader>fh", "<cmd>LeaderfHistoryCmd<cr>", { desc = "Leader[F] [H]istoryCmd" })
       vim.keymap.set("n", "<leader>fr", "<cmd>Leaderf gtags --remove<cr>", { desc = "Leader[F] [R]emove gtags" })
       vim.keymap.set("n", "<leader>fu", "<cmd>Leaderf gtags --update<cr>", { desc = "Leaderf[F] [U]pdate gtags" })
-      vim.keymap.set("n", "<leader>fg", function() vim.cmd("Leaderf rg -F " .. vim.fn.expand("<cword>")) end, { desc = "Leaderf[F] [G]rep" })
+      vim.keymap.set("n", "<leader>fG", function() vim.cmd("Leaderf rg -F " .. vim.fn.expand("<cword>")) end, { desc = "Leaderf[F] [G]rep" })
       vim.keymap.set("n", "<leader>f",  "<cmd>LeaderfBufTag<cr>", { desc = "Leader[F] BufTag" })
       -- vim.keymap.set("n", "<leader>p", "<cmd>LeaderfFile<cr>", { desc = "Leader[F] File" })
       vim.keymap.set("n", "<leader>P", ":Leaderf file --input ", { desc = "Leader[F] File with input" })
@@ -165,7 +165,7 @@ return {
       vim.keymap.set("n", "<leader>l", "<cmd>LeaderfLine<cr>", { desc = "Leader[F] [L]ine" })
       vim.keymap.set("n", "<leader>b", "<cmd>Leaderf git blame<cr>", { desc = "Leader[F] git [B]lame" })
       -- vim.keymap.set("n", "<leader>i", "Leaderf snippet<cr>", { desc = "Leader[F] snippet" }) -- Insert snippet at current cursor position
-      -- vim.keymap.set("n", "<leader>i", "o<C-\\><C-O>:Leaderf snippet<CR>", { desc = "Leader[F] snippet" }) -- Insert line below and insert snippet
+      vim.keymap.set("n", "<leader>i", "o<C-\\><C-O>:Leaderf snippet<CR>", { desc = "Leader[F] snippet" }) -- Insert line below and insert snippet
 
       -- find gtags in git repo
       local function gtags_cur_gitdir(tag)
@@ -232,7 +232,7 @@ return {
       vim.keymap.set("n", "<leader>p", files_in_repo_dirs, { desc = "Leader[F] File in repo dirs"})
 
       -- grep in git repo
-      local function grep_cur_gitdir()
+      local function grep_cur_gitdir(word)
         local git_root, err = get_git_root()
         if not git_root then
           vim.notify(err, vim.log.levels.WARN)
@@ -243,9 +243,9 @@ return {
 
         -- NOTE: support cmd: rg foo <dir1> <dir2> -e <string>
         -- NOTE: dir need not be in subdirectory of cwd
-        vim.api.nvim_feedkeys((":Leaderf rg -F %s -e "):format(git_root), "n", false) -- will add to cmd history (because there is no \n)
+        vim.api.nvim_feedkeys((":Leaderf rg -F %s -e %s"):format(git_root, word), "n", false) -- will add to cmd history (because there is no \n)
       end
-      vim.keymap.set("n", "<Leader>fG", function() grep_cur_gitdir() end, { desc = "Leader[F] [G]rep in git repo" })
+      vim.keymap.set("n", "<Leader>fg", function() grep_cur_gitdir(vim.fn.expand("<cword>")) end, { desc = "Leader[F] [G]rep in git repo" })
     end,
   },
 }

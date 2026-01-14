@@ -90,7 +90,7 @@ vim.o.confirm = true
 vim.cmd [[autocmd BufReadPost * if line("'\"") > 0 | exe "normal! g'\"" | endif]]
 
 -- Color column
-vim.o.colorcolumn = '81'
+-- vim.o.colorcolumn = '81'
 
 -- Color column of gitcommit
 vim.cmd [[autocmd FileType gitcommit set colorcolumn=71]]

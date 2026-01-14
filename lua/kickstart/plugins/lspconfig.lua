@@ -283,11 +283,15 @@ return {
         },
       }
 
-      -- vim.lsp.config("clangd", {
-      --   handlers = {
-      --     ["textDocument/publishDiagnostics"] = function() end,
-      --   },
-      -- })
+      vim.lsp.config("clangd", {
+        cmd = {
+          "clangd",
+          "--header-insertion=never",
+        },
+        -- handlers = {
+        --   ["textDocument/publishDiagnostics"] = function() end,
+        -- },
+      })
     end,
   },
 }

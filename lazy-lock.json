@@ -1,5 +1,5 @@
 {
-  "LeaderF": { "branch": "master", "commit": "013fb023c7e588d338269ef4f301bf954e9440b3" },
+  "LeaderF": { "branch": "master", "commit": "042326bacce280e1a5bcc835cba5bee21e24917a" },
   "Leaderf-snippet": { "branch": "master", "commit": "dcbec11832a83978a11bfc0fbc69677a09541e1e" },
   "LuaSnip": { "branch": "master", "commit": "5a1e39223db9a0498024a77b8441169d260c8c25" },
   "aerial.nvim": { "branch": "master", "commit": "da0ceef62eb58b9bec1975017beb2f28c3b1e72c" },

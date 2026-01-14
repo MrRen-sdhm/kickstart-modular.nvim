@@ -26,6 +26,9 @@ vim.keymap.set('n', '<leader>t<enter>', '<cmd>set wrap!<CR>', { desc = '[T]oggle
 --  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
+-- Add a new line below
+vim.keymap.set("n", "<M-CR>", "o<Esc>", { desc = "Add a new line below" })
+
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
