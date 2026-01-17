@@ -287,6 +287,7 @@ return {
         cmd = {
           "clangd",
           "--header-insertion=never",
+          "--log=error" -- verbose/info/error
         },
         -- handlers = {
         --   ["textDocument/publishDiagnostics"] = function() end,

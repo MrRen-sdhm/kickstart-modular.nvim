@@ -113,6 +113,18 @@ return {
               "progress",
             },
           },
+          lualine_z = {
+            {
+              'location',
+              fmt = function(str)
+                local line, col = str:match('(%d+):(%d+)')
+                if not line then
+                  return str
+                end
+                return string.format('%s/%d %s', line, vim.fn.line('$'), col)
+              end,
+            },
+          }
         },
       })
     end

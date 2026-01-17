@@ -75,7 +75,7 @@ return {
           hl.CursorLineNr = { fg = "#ff8700" }
           hl.Whitespace   = { fg = "#5f5f5f" } -- "nbsp", "space", "tab" and "trail" in 'listchars'
           hl.WinSeparator = { fg = "#808080", bold=true } -- the column separating vertically split windows
-          hl.EndOfBuffer  = { fg="#5f5f5f" }
+          -- hl.EndOfBuffer  = { fg="#5f5f5f" }
         end,
       }
 

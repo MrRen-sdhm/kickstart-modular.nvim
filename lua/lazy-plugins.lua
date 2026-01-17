@@ -29,6 +29,11 @@ require('lazy').setup({
     dependencies = { "nvim-tree/nvim-web-devicons" },
     cmd = { "Oil" },
   },
+  {
+    'rcarriga/nvim-notify',
+    lazy=true,
+    opts = {},
+  },
 
   -- colorscheme
   {

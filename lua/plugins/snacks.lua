@@ -9,7 +9,12 @@ return {
     -- statuscolumn = { enabled = true },
     -- words = { enabled = true },
     -- scope = { enabled = true },
-    notifier = { enabled = true },
+    notifier = {
+      enabled = true,
+      timeout = 3000,
+      -- padding = false,
+      -- style = 'fancy' -- compact/fancy/minimal
+    },
     quickfile = { enabled = true },
     scroll = { enabled = true, }, -- Smooth scrolling
     bigfile = { enabled = true },
@@ -37,6 +42,15 @@ return {
       },
     },
     styles = {
+      notification = {
+        border = true,
+        zindex = 100,
+        ft = "markdown",
+        wo = {
+          winblend = 0,
+          wrap = true,
+        },
+      },
       notification_history = {
         border = true,
         zindex = 100,
