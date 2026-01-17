@@ -41,6 +41,7 @@
   "possession.nvim": { "branch": "master", "commit": "fbea95b16c284727bc8deff2c3780a73efcdaca6" },
   "snacks.nvim": { "branch": "main", "commit": "fe7cfe9800a182274d0f868a74b7263b8c0c020b" },
   "sqlite.lua": { "branch": "master", "commit": "50092d60feb242602d7578398c6eb53b4a8ffe7b" },
+  "starsearch.vim": { "branch": "master", "commit": "a2dcd77e9c32bc7304a8f257204432b853ae82b9" },
   "telescope-fzf-native.nvim": { "branch": "main", "commit": "6fea601bd2b694c6f2ae08a6c6fab14930c60e2c" },
   "telescope-luasnip.nvim": { "branch": "master", "commit": "67bd6ea48ec235769b2da4451e8c9500ce786442" },
   "telescope-ui-select.nvim": { "branch": "master", "commit": "6e51d7da30bd139a6950adf2a47fda6df9fa06d2" },
