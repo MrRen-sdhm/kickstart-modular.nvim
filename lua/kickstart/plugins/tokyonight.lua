@@ -71,7 +71,7 @@ return {
           hl.NonText      = { fg = "#5f5f5f" }
           hl.CursorColumn = { bg = "#303030" }
           hl.ColorColumn  = { bg = "#303030" }
-          hl.CursorLine   = { bg = "#1c1c1c" }
+          hl.CursorLine   = { bg = "#262626" }
           hl.CursorLineNr = { fg = "#ff8700" }
           hl.Whitespace   = { fg = "#5f5f5f" } -- "nbsp", "space", "tab" and "trail" in 'listchars'
           hl.WinSeparator = { fg = "#808080", bold=true } -- the column separating vertically split windows
