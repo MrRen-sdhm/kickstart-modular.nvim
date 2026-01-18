@@ -12,6 +12,7 @@ return {
     notifier = {
       enabled = false,
       timeout = 3000,
+      icons = { error = "", warn = "", info = "", debug = "", trace = "", }, -- disable icon
       -- padding = false,
       -- style = 'fancy' -- compact/fancy/minimal
     },

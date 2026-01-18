@@ -40,7 +40,7 @@ require('lazy').setup({
       timeout = 1000,
       minimum_width = 40,
       -- max_width = 80,
-      render = "wrapped-compact", -- default minimal simple compact wrapped-compact wrapped-default
+      render = "compact", -- default minimal simple compact wrapped-compact wrapped-default
       stages = "fade_in_slide_out", -- fade_in_slide_out fade slide static
     },
   },
