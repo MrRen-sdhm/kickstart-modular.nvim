@@ -30,7 +30,7 @@ return {
       vim.g.Lf_UseVersionControlTool = 0
       vim.g.Lf_RootMarkers = {'.repo'}
       vim.g.Lf_WorkingDirectoryMode = 'AF'
-      vim.g.Lf_JumpToExistingWindow = 1
+      vim.g.Lf_JumpToExistingWindow = 0
       vim.g.Lf_TabpagePosition = 3
       vim.g.Lf_QuickSelect = 0
       vim.g.Lf_GtagsAutoGenerate = 1
