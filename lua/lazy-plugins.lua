@@ -32,8 +32,17 @@ require('lazy').setup({
   },
   {
     'rcarriga/nvim-notify',
-    lazy=true,
-    opts = {},
+    init = function()
+      vim.notify = require("notify") -- setting as default notify function
+      vim.keymap.set("n", "<leader>sn", "<cmd>Telescope notify<cr>", { desc = "[S]earch [N]otify" })
+    end,
+    opts = {
+      timeout = 1000,
+      minimum_width = 40,
+      -- max_width = 80,
+      render = "wrapped-compact", -- default minimal simple compact wrapped-compact wrapped-default
+      stages = "fade_in_slide_out", -- fade_in_slide_out fade slide static
+    },
   },
 
   -- colorscheme

@@ -10,7 +10,7 @@ return {
     -- words = { enabled = true },
     -- scope = { enabled = true },
     notifier = {
-      enabled = true,
+      enabled = false,
       timeout = 3000,
       -- padding = false,
       -- style = 'fancy' -- compact/fancy/minimal

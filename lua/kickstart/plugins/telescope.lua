@@ -171,7 +171,7 @@ return {
       -- vim.keymap.set('n', '<leader>sl', builtin.current_buffer_fuzzy_find,
       --   { desc = 'Fuzzily search in current buffer' })
       vim.keymap.set('n', '<leader>sl', function()
-        builtin.current_buffer_fuzzlllind {
+        builtin.current_buffer_fuzzy_find {
           previewer = false,
           layout_strategy = "vertical",
           layout_config = {
