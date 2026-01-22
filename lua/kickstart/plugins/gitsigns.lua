@@ -31,6 +31,20 @@ return {
         ]]
       )
 
+      -- change base picker
+      vim.keymap.set("n", "<leader>gc", function()
+        local items = { "HEAD", "HEAD~1", "HEAD~2", "HEAD~3" }
+
+        vim.ui.select(items, {
+          prompt = "Gitsigns change_base:",
+        }, function(choice)
+          if choice then
+            require("gitsigns").change_base(choice)
+            vim.notify("Gitsigns change base to: " .. choice)
+          end
+        end)
+      end, { desc = "Gitsigns: pick change_base" })
+
       require('gitsigns').setup({
           -- Your gitsigns configuration here
         signcolumn = false,
@@ -85,10 +99,11 @@ return {
             gitsigns.reset_hunk { vim.fn.line '.', vim.fn.line 'v' }
           end, { desc = 'git [r]eset hunk' })
           -- normal mode
+          map('n', '<leader>gu', gitsigns.reset_hunk, { desc = 'git [u]ndo hunk' })
           map('n', '<leader>hs', gitsigns.stage_hunk, { desc = 'git [s]tage hunk' })
           map('n', '<leader>hr', gitsigns.reset_hunk, { desc = 'git [r]eset hunk' })
           map('n', '<leader>hS', gitsigns.stage_buffer, { desc = 'git [S]tage buffer' })
-          map('n', '<leader>hu', gitsigns.stage_hunk, { desc = 'git [u]ndo stage hunk' })
+          map('n', '<leader>hu', gitsigns.undo_stage_hunk, { desc = 'git [u]ndo stage hunk' })
           map('n', '<leader>hR', gitsigns.reset_buffer, { desc = 'git [R]eset buffer' })
           map('n', '<leader>hp', gitsigns.preview_hunk, { desc = 'git [p]review hunk' })
           map('n', '<leader>hb', gitsigns.blame_line, { desc = 'git [b]lame line' })
