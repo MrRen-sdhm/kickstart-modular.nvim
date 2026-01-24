@@ -23,7 +23,18 @@ return {
         sections = {
           lualine_b = {
             { "branch" },
-            { "diff" },
+            {
+              "diff",
+                source = function()
+                  local gs = vim.b.gitsigns_status_dict
+                  if not gs then return {} end
+                  return {
+                    added = gs.added,
+                    modified = gs.changed,
+                    removed = gs.removed,
+                  }
+                end,
+            },
             {
               "diagnostics",
 
