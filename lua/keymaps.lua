@@ -105,10 +105,10 @@ local toggle_mouse = function()
   local current_mouse = vim.o.mouse
   if current_mouse == 'a' then
     vim.o.mouse = ''  -- disable
-    print('Mouse disabled (mouse=)')
+    vim.notify('Mouse disabled (mouse=)')
   else
     vim.o.mouse = 'a' -- enable in all mode
-    print('Mouse enabled (mouse=a)')
+    vim.notify('Mouse enabled (mouse=a)')
   end
 end
 

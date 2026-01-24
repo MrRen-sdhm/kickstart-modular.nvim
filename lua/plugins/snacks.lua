@@ -4,8 +4,20 @@ return {
   lazy = false,
   opts = {
     -- explorer = { enabled = true },
-    -- input = { enabled = true },
-    -- picker = { enabled = true },
+    input = {
+      enabled = true,
+    },
+    picker = {
+      enabled = false,
+      win = {
+        -- input window
+        input = {
+          keys = {
+            ["<Esc>"] = { "close", mode = { "n", "i" } },
+          },
+        },
+      },
+    },
     -- statuscolumn = { enabled = true },
     -- words = { enabled = true },
     -- scope = { enabled = true },
@@ -63,11 +75,20 @@ return {
         ft = "markdown",
         keys = { q = "close" },
       },
+      input = {
+        row = 15,
+        wo = {
+          winhighlight = "NormalFloat:SnacksInputNormal,FloatBorder:SnacksInputBorder,FloatTitle:SnacksInputTitle,LineNr:SnacksInputNormal",
+          cursorline = false,
+        },
+      },
     },
   },
   keys = {
     { "<leader>tt", function() Snacks.terminal() end, desc = "[T]oggle [T]erminal" },
-    { "<leader>n", function() Snacks.notifier.show_history() end, desc = "[N]otification History" },
+    { "<leader>sH", function() Snacks.picker.highlights() end, desc = "[S]earch [H]ighlights" },
+    { "<leader>S", function() Snacks.picker() end, desc = "[S]nacks Picker" },
+    -- { "<leader>n", function() Snacks.notifier.show_history() end, desc = "[N]otification History" },
     -- { "<leader>n", function() Snacks.picker.notifications() end, desc = "[N]otification History" },
   },
   init = function ()

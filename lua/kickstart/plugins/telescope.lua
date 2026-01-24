@@ -10,6 +10,7 @@
 return {
   { -- Fuzzy Finder (files, lsp, etc)
     'nvim-telescope/telescope.nvim',
+    enabled = true,
     event = 'VimEnter',
     dependencies = {
       'nvim-lua/plenary.nvim',
@@ -150,7 +151,7 @@ return {
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
       vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
-      vim.keymap.set('n', '<leader>sH', builtin.command_history, { desc = '[S]earch command [H]istory' })
+      vim.keymap.set('n', '<leader>sC', builtin.command_history, { desc = '[S]earch [C]ommand History' })
       vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
       vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
       vim.keymap.set('n', '<leader>sT', builtin.builtin, { desc = '[S]earch select [T]slescope' })
@@ -166,7 +167,7 @@ return {
           symbols = { "Function", "Method" },
           prompt_title = 'Find Functions'
         }
-      end, { desc = "[F]ind [F]unctions"})
+      end, { desc = "[S]earch [F]unctions"})
 
       -- vim.keymap.set('n', '<leader>sl', builtin.current_buffer_fuzzy_find,
       --   { desc = 'Fuzzily search in current buffer' })
