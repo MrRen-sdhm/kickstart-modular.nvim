@@ -85,7 +85,7 @@ return {
     },
   },
   keys = {
-    { "<leader>tt", function() Snacks.terminal() end, desc = "[T]oggle [T]erminal" },
+    { "\\t", function() Snacks.terminal() end, desc = "Snacks Terminal" },
     { "<leader>sH", function() Snacks.picker.highlights() end, desc = "[S]earch [H]ighlights" },
     { "<leader>S", function() Snacks.picker() end, desc = "[S]nacks Picker" },
     -- { "<leader>n", function() Snacks.notifier.show_history() end, desc = "[N]otification History" },

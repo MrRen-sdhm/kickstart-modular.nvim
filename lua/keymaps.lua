@@ -119,7 +119,14 @@ vim.keymap.set('n', '<leader>tm', toggle_mouse, { desc = '[T]oggle [m]ouse' })
 vim.keymap.set('i', '<M-d>', '<C-o>dw')
 
 -- switch to last used buffer
-vim.keymap.set('n', '<Tab>', ':b#<CR>', { noremap = true, silent = true, desc = 'switch to last used buffer' })
+vim.keymap.set('n', '<leader><tab>', ':b#<CR>', { noremap = true, silent = true, desc = 'switch to last used buffer' })
+
+-- Toggle tab indent: <leader>tt (4 spaces <-> 8 hard tabs)
+vim.keymap.set('n', '<leader>tt', function()
+  local use_spaces = not vim.bo.expandtab
+  vim.bo.expandtab, vim.bo.tabstop, vim.bo.shiftwidth, vim.bo.softtabstop = use_spaces, use_spaces and 4 or 8, use_spaces and 4 or 8, use_spaces and 4 or 8
+  vim.notify(use_spaces and "Tab Indent: 4 spaces" or "Tab Indent: 8 hard tabs")
+end, { desc="[T]oggle [T]ab indent (spaces/tabs)" })
 
 -- Visual mode text substitution
 vim.cmd [[

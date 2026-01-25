@@ -86,6 +86,9 @@ vim.o.scrolloff = 2
 -- See `:help 'confirm'`
 vim.o.confirm = true
 
+-- Make the jumplist behave like the tagstack
+vim.opt.jumpoptions = "stack"
+
 -- Auto restore cursor position when opening a file
 vim.cmd [[autocmd BufReadPost * if line("'\"") > 0 | exe "normal! g'\"" | endif]]
 
