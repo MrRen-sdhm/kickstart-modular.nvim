@@ -54,10 +54,10 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }
 --  Use CTRL+<hjkl> to switch between windows
 --
 --  See `:help wincmd` for a list of all window commands
-vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
-vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
-vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
-vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+-- vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
+-- vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
+-- vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
+-- vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 vim.keymap.set('n', '<M-Left>',  '<C-w><C-h>', { desc = 'Move focus to the left window' })
 vim.keymap.set('n', '<M-Right>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
@@ -156,5 +156,9 @@ endfunction
 
 xnoremap s :<c-u>call SubstitueVisualSelect()<cr>
 ]]
+
+-- clang-format
+vim.keymap.set({"n", "v"}, "<M-c>", "<cmd>py3f ~/clang-format.py<CR>", { desc = "Run clang-format" })
+vim.keymap.set("i", "<M-c>", "<C-o>:py3f ~/clang-format.py<CR>", { desc = "Run clang-format" })
 
 -- vim: ts=2 sts=2 sw=2 et
