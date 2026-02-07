@@ -56,6 +56,9 @@ return {
           topdelete = { text = '‾' },
           changedelete = { text = '~' },
         },
+        diff_opts = {
+          algorithm = "patience",
+        },
         on_attach = function(bufnr)
           local gitsigns = require 'gitsigns'
 
