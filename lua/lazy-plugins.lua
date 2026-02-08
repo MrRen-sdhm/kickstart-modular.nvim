@@ -116,6 +116,7 @@ require('lazy').setup({
   require 'plugins.vim-illuminate',
   require 'plugins.cutlass',
   require 'plugins.minuet',
+  require 'plugins.git-blame',
 
   require 'kickstart.plugins.gitsigns',
 
