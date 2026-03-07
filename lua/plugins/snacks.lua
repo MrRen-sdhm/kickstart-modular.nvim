@@ -9,6 +9,7 @@ return {
     },
     picker = {
       enabled = true,
+      prompt = " ",
       layout = {
         preset = "select",
         -- preset = "default",
