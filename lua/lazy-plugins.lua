@@ -117,6 +117,7 @@ require('lazy').setup({
   require 'plugins.cutlass',
   require 'plugins.minuet',
   require 'plugins.git-blame',
+  require 'plugins.opencode',
 
   require 'kickstart.plugins.gitsigns',
 

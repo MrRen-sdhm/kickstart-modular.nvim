@@ -8,7 +8,7 @@ return {
       enabled = true,
     },
     picker = {
-      enabled = false,
+      -- enabled = false,
       win = {
         -- input window
         input = {

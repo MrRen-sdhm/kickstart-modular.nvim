@@ -135,6 +135,9 @@ return {
                 return string.format('%s/%d %s', line, vim.fn.line('$'), col)
               end,
             },
+            -- {
+            --   require("opencode").statusline,
+            -- },
           }
         },
       })
