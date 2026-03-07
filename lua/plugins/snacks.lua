@@ -8,7 +8,20 @@ return {
       enabled = true,
     },
     picker = {
-      -- enabled = false,
+      enabled = true,
+      layout = {
+        preset = "select",
+        -- preset = "default",
+        -- preset = "vertical",
+        -- hidden = { "preview" },
+        layout = {
+          -- width = 0.6,
+          -- min_width = 40,
+          -- max_width = 100,
+          height = 0.6,
+          min_height = 12,
+        },
+      },
       win = {
         -- input window
         input = {
