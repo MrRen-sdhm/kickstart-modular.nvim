@@ -95,6 +95,20 @@ return {
           winhighlight = "NormalFloat:SnacksInputNormal,FloatBorder:SnacksInputBorder,FloatTitle:SnacksInputTitle,LineNr:SnacksInputNormal",
           cursorline = false,
         },
+        keys = {
+          -- use alt+enter to append text (for opencode.nvim)
+          -- reference: https://github.com/nickjvandyke/opencode.nvim/blob/main/lua/opencode/config.lua#L95
+          i_m_cr = {
+            "<M-CR>",
+            function(win)
+              local text = win:text() .. "\\n"
+              vim.api.nvim_buf_set_lines(win.buf, 0, -1, false, { text })
+              win:execute("confirm")
+            end,
+            mode = "i",
+            desc = "append",
+          },
+        }
       },
     },
   },

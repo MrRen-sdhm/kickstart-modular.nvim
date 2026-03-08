@@ -51,6 +51,14 @@ return {
           require('snacks.terminal').toggle(opencode_cmd, snacks_terminal_opts)
         end,
       },
+      ask = {
+        snacks = {
+          win = {
+            -- use alt+enter to append text
+            footer_keys = { "<CR>", "<M-CR>" },
+          },
+        },
+      },
     }
 
     vim.o.autoread = true -- Required for `opts.events.reload`
