@@ -108,6 +108,8 @@ return {
             mode = "i",
             desc = "append",
           },
+          -- esc: exit direcly in insert mode
+          i_esc = { "<esc>", { "cmp_close", "cancel" }, mode = "i", expr = true },
         }
       },
     },

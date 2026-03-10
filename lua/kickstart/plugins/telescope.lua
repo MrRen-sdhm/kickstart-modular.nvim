@@ -153,7 +153,7 @@ return {
       vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
       vim.keymap.set('n', '<leader>sC', builtin.command_history, { desc = '[S]earch [C]ommand History' })
       vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
-      vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
+      -- vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
       vim.keymap.set('n', '<leader>sT', builtin.builtin, { desc = '[S]earch select [T]slescope' })
       vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
       vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
@@ -161,6 +161,35 @@ return {
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
       vim.keymap.set('n', '<leader>sm', builtin.oldfiles, { desc = '[S]earch [M]ost Recent Files' })
       vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
+
+      local function find_files_ext()
+        vim.ui.input({ prompt = "Extensions (example: lua py md): " }, function(input)
+          -- Case 1: user pressed ESC / cancelled
+          if input == nil then
+            return
+          end
+
+          -- Case 2: user pressed Enter without typing
+          if input == "" then
+            builtin.find_files()
+            return
+          end
+
+          local exts = vim.split(input, " ")
+          local cmd = { "rg", "--files" }
+
+          for _, ext in ipairs(exts) do
+            table.insert(cmd, "--iglob")
+            table.insert(cmd, "*." .. ext)
+          end
+
+          builtin.find_files({
+            find_command = cmd,
+          })
+
+        end)
+      end
+      vim.keymap.set("n", "<leader>sf", find_files_ext, { desc = "[S]earch [F]iles by extension" })
 
       vim.keymap.set("n", "<leader>sF", function()
         builtin.lsp_document_symbols {
