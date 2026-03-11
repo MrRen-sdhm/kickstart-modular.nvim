@@ -189,7 +189,7 @@ return {
 
         end)
       end
-      vim.keymap.set("n", "<leader>sf", find_files_ext, { desc = "[S]earch [F]iles by extension" })
+      -- vim.keymap.set("n", "<leader>sf", find_files_ext, { desc = "[S]earch [F]iles by extension" })
 
       vim.keymap.set("n", "<leader>sF", function()
         builtin.lsp_document_symbols {

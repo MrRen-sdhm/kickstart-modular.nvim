@@ -11,12 +11,12 @@ return {
       enabled = true,
       prompt = " ",
       layout = {
-        preset = "select",
+        -- preset = "select",
         -- preset = "default",
         -- preset = "vertical",
-        -- hidden = { "preview" },
+        hidden = { "preview" },
         layout = {
-          -- width = 0.6,
+          width = 0.8,
           -- min_width = 40,
           -- max_width = 100,
           height = 0.6,
@@ -143,6 +143,32 @@ return {
         end
       end,
     })
+
+    local function find_files_ext()
+      vim.ui.input({ prompt = "Extensions (example: lua py md): " }, function(input)
+        -- Case 1: user pressed ESC / cancelled
+        if input == nil then
+          return
+        end
+
+        -- Case 2: user pressed Enter without typing
+        if input == "" then
+          Snacks.picker.files();
+          return
+        end
+
+        local exts = vim.split(input, " ")
+        local extensions = {}
+
+        for _, ext in ipairs(exts) do
+          table.insert(extensions, ext)
+        end
+
+        Snacks.picker.files({ft = extensions});
+
+      end)
+    end
+    vim.keymap.set("n", "<leader>se", find_files_ext, { desc = "[S]earch [F]iles by extension" })
   end
 }
 
