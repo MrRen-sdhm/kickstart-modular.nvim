@@ -168,7 +168,7 @@ return {
 
       end)
     end
-    vim.keymap.set("n", "<leader>se", find_files_ext, { desc = "[S]earch [F]iles by extension" })
+    vim.keymap.set("n", "<leader>se", find_files_ext, { desc = "[S]earch Files by [E]xtension" })
   end
 }
 

@@ -27,6 +27,9 @@ return {
     },
   },
   init = function ()
+    local FzfLua = require("fzf-lua")
+
+    -- search files by extensions
     local function find_files_ext()
       vim.ui.input({ prompt = "Extensions (example: lua py md): " }, function(input)
         -- Case 1: user pressed ESC / cancelled
@@ -36,7 +39,7 @@ return {
 
         -- Case 2: user pressed Enter without typing
         if input == "" then
-          require("fzf-lua").files({})
+          FzfLua.files({})
           return
         end
 
@@ -47,10 +50,15 @@ return {
           cmd = cmd .. " --iglob '*." .. ext .. "'"
         end
 
-        require("fzf-lua").files({raw_cmd = cmd})
+        FzfLua.files({raw_cmd = cmd})
 
       end)
     end
     vim.keymap.set("n", "<leader>sf", find_files_ext, { desc = "[S]earch [F]iles by extension" })
+
+    -- -- search nvim configuration files
+    -- vim.keymap.set('n', '<leader>sc', function()
+    --   FzfLua.files({cwd = vim.fn.stdpath('config'), winopts = {title=" 🔧 Search Neovim Config "}})
+    -- end, { desc = '[S]earch Neovim [C]onfig files' })
   end
 }
