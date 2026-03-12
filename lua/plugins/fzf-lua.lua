@@ -4,20 +4,25 @@ return {
   dependencies = { "nvim-tree/nvim-web-devicons" },
   -- or if using mini.icons/mini.nvim
   -- dependencies = { "nvim-mini/mini.icons" },
+
   ---@module "fzf-lua"
   ---@type fzf-lua.Config|{}
   ---@diagnostic disable: missing-fields
   opts = {
     winopts = {
-      width = 0.80,
+      -- width = 0.80,
       height = 0.60,
+      -- title_flags = false,
+      preview = {
+        hidden = true,
+        -- layout = "vertical", -- horizontal|vertical|flex
+      },
     },
     files = {
       prompt = '❯ ',
-      -- prompt = '>>> ',
-      previewer = false,
       cwd_prompt = false,
-      -- absolute_path = true,
+      absolute_path = false,
+      hidden = false, -- disable hidden files
       rg_opts = [[--color=never --hidden --files -g "!.git"]],
     },
   },

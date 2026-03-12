@@ -9,7 +9,7 @@ return {
     },
     picker = {
       enabled = true,
-      prompt = " ",
+      prompt = "❯ ",
       layout = {
         -- preset = "select",
         -- preset = "default",
