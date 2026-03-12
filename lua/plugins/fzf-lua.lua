@@ -50,7 +50,7 @@ return {
           cmd = cmd .. " --iglob '*." .. ext .. "'"
         end
 
-        FzfLua.files({raw_cmd = cmd})
+        FzfLua.files({raw_cmd = cmd, winopts = {title=" Files with extensions: " .. input .. " "}})
 
       end)
     end
