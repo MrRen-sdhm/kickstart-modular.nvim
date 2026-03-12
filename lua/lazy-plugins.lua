@@ -129,6 +129,7 @@ require('lazy').setup({
   require 'plugins.minuet',
   require 'plugins.git-blame',
   require 'plugins.opencode',
+  require 'plugins.claudecode',
   require 'plugins.fzf-lua',
 
   require 'kickstart.plugins.gitsigns',
