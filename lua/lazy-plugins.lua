@@ -131,6 +131,7 @@ require('lazy').setup({
   require 'plugins.opencode',
   require 'plugins.claudecode',
   require 'plugins.fzf-lua',
+  require 'plugins.yazi',
 
   require 'kickstart.plugins.gitsigns',
 
