@@ -225,11 +225,11 @@ return {
         }
 
         local cmd = "Leaderf file " .. table.concat(search_directories, " ") .. " --nameOnly"
-        -- vim.notify(cmd)
+        vim.notify(cmd)
         vim.cmd(cmd)
         vim.fn.histadd("cmd", cmd)
       end
-      vim.keymap.set("n", "<leader>p", files_in_repo_dirs, { desc = "Leader[F] File in repo dirs"})
+      vim.keymap.set("n", "<leader>P", files_in_repo_dirs, { desc = "Leader[F] File in repo dirs"})
 
       -- grep in git repo
       local function grep_cur_gitdir(word)
