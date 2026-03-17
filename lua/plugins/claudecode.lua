@@ -1,8 +1,13 @@
 return {
   "coder/claudecode.nvim",
   enabled = false,
+  lazy = false,
   dependencies = { "folke/snacks.nvim" },
-  config = true,
+  opts = {
+    terminal = {
+      provider = "none", -- no UI actions; server + tools remain available
+    },
+  },
   keys = {
     { "<leader>a", nil, desc = "AI/Claude Code" },
     { "<leader>ac", "<cmd>ClaudeCode<cr>", desc = "Toggle Claude" },
