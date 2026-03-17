@@ -156,6 +156,7 @@ return {
       vim.keymap.set("n", "<leader>fr", "<cmd>Leaderf gtags --remove<cr>", { desc = "Leader[F] [R]emove gtags" })
       vim.keymap.set("n", "<leader>fu", "<cmd>Leaderf gtags --update<cr>", { desc = "Leaderf[F] [U]pdate gtags" })
       vim.keymap.set("n", "<leader>fG", function() vim.cmd("Leaderf rg -F " .. vim.fn.expand("<cword>")) end, { desc = "Leaderf[F] [G]rep" })
+      vim.keymap.set("n", "<leader>fd", function() vim.api.nvim_feedkeys((":Leaderf gtags -d %s"):format(""), "n", false) end, { desc = "Leaderf[F] [G]rep" })
       -- vim.keymap.set("n", "<leader>f",  "<cmd>LeaderfBufTag<cr>", { desc = "Leader[F] BufTag" })
       -- vim.keymap.set("n", "<leader>p", "<cmd>LeaderfFile<cr>", { desc = "Leader[F] File" })
       vim.keymap.set("n", "<leader>P", ":Leaderf file --input ", { desc = "Leader[F] File with input" })
