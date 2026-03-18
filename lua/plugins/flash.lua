@@ -3,7 +3,8 @@ return {
   event = "VeryLazy",
   ---@type Flash.Config
   opts = {
-    labels = "asdfjklghcvnmeruiwotybzxqp",
+    -- labels = "asdfjklghcvnmeruiwotybzxqp",
+    labels = "asdfjklcverghnmuiwotybzxqp",
     label = {
       -- allow uppercase labels
       uppercase = true,
