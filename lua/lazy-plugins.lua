@@ -47,13 +47,34 @@ require('lazy').setup({
   {
     "OXY2DEV/markview.nvim",
     lazy = false,
-    enabled = true,
+    enabled = false,
   },
   {
     'MeanderingProgrammer/render-markdown.nvim',
     dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
     opts = {},
-    enabled = false,
+    enabled = true,
+  },
+  {
+    "esmuellert/codediff.nvim",
+    cmd = "CodeDiff",
+    opts = {
+      -- Highlight configuration
+      highlights = {
+        -- Line-level: accepts highlight group names or hex colors (e.g., "#2ea043")
+        line_insert = "#1d3042",      -- Line-level insertions
+        line_delete = "#351d2b",   -- Line-level deletions
+
+        -- Character-level: accepts highlight group names or hex colors
+        -- If specified, these override char_brightness calculation
+        char_insert = nil,            -- Character-level insertions (nil = auto-derive)
+        char_delete = nil,            -- Character-level deletions (nil = auto-derive)
+
+        -- Brightness multiplier (only used when char_insert/char_delete are nil)
+        -- nil = auto-detect based on background (1.4 for dark, 0.92 for light)
+        char_brightness = 1.5,        -- Auto-adjust based on your colorscheme
+      },
+    }
   },
 
   -- colorscheme

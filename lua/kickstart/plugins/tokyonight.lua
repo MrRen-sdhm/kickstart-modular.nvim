@@ -76,6 +76,8 @@ return {
           hl.Whitespace   = { fg = "#5f5f5f" } -- "nbsp", "space", "tab" and "trail" in 'listchars'
           hl.WinSeparator = { fg = "#808080", bold=true } -- the column separating vertically split windows
           -- hl.EndOfBuffer  = { fg="#5f5f5f" }
+          hl.DiffAdd      = { bg = "#1d3042" }
+          hl.DiffDelete   = { bg = "#351d2b" }
 
           -- Snacks
           hl.SnacksPickerPrompt = { bg = "#121212", fg = "#589ed7" }
