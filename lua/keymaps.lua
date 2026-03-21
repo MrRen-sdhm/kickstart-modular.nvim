@@ -113,9 +113,10 @@ local toggle_mouse = function()
 end
 
 -- toggle mouse
-vim.keymap.set('n', '<leader>tm', toggle_mouse, { desc = '[T]oggle [m]ouse' })
-vim.keymap.set('n', '<M-m>', toggle_mouse, { desc = '[T]oggle [m]ouse' })
-vim.keymap.set('n', '<C-m>', toggle_mouse, { desc = '[T]oggle [m]ouse' })
+vim.keymap.set('n', '<leader>tm', toggle_mouse, { desc = '[T]oggle [M]ouse' })
+vim.keymap.set('n', '<M-m>', toggle_mouse, { desc = 'Toggle Mouse' })
+vim.keymap.set('n', '<C-m>', toggle_mouse, { desc = 'Toggle Mouse' })
+vim.keymap.set('n', '<leader>v', toggle_mouse, { desc = 'Toggle Mouse' })
 
 -- Alt+d delete word in insert mode
 vim.keymap.set('i', '<M-d>', '<C-o>dw')

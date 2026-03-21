@@ -55,8 +55,10 @@ require('lazy').setup({
     opts = {
       heading = {
         -- icons = { '1 ', '2 ', '3 ', '4 ', '5 ', '6 ' },
-        icons = { '①  ', '②  ', '③  ', '④  ', '⑤  ', '⑥  ' },
-        position = 'inline',
+        -- icons = { '①  ', '②  ', '③  ', '④  ', '⑤  ', '⑥  ' },
+        -- icons = { '󰼏  ', '󰼐  ', '󰼑  ', '󰼒  ', '󰼓  ', '󰼔  ' },
+        icons = { '▉ ', '▊ ', '▋ ', '▌ ', '▍ ', '▎ ' },
+        -- position = 'inline',
       },
       pipe_table = { preset = 'round' },
     },
