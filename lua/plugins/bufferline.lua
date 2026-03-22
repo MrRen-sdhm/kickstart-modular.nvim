@@ -25,10 +25,11 @@ return {
       mode = "tabs", -- only show tabs
       always_show_bufferline = true,
       show_buffer_close_icons = false,
-      max_name_length = 28,
-      -- custom_filter = function(bufnr, _) -- only show current buffer
-      --   return bufnr == vim.api.nvim_get_current_buf()
-      -- end,
+      max_name_length = 200,
+      name_formatter = function(buf)
+        local path = vim.fn.fnamemodify(buf.path, ":~") -- show full path
+        return path
+      end,
       offsets = {
         {
           filetype = "neo-tree",
