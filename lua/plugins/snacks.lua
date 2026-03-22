@@ -54,6 +54,7 @@ return {
     },
     dashboard = {
       enabled = true,
+      width = 54,
       preset = {
         keys = {
           { icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
