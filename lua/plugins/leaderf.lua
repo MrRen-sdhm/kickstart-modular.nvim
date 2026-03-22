@@ -33,8 +33,9 @@ return {
       vim.g.Lf_JumpToExistingWindow = 0
       vim.g.Lf_TabpagePosition = 3
       vim.g.Lf_QuickSelect = 0
-      vim.g.Lf_GtagsAutoGenerate = 1
+      vim.g.Lf_GtagsAutoGenerate = 0
       vim.g.Lf_GtagsAutoUpdate = 0
+      vim.g.Lf_GtagsGutentags = 1
 
       vim.g.Lf_WildIgnore = { ['dir'] = {}, ['file'] = {'*.[!ch]*', '*.c[a-z]*', '*.h[a-z]*'} }
       vim.g.Lf_RgConfig = {"-g=!*.mk", "-g=!*.cc"}
@@ -154,7 +155,7 @@ return {
       vim.keymap.set("n", "<leader>fs", "<cmd>LeaderfBufTag<cr>", { desc = "Leader[F] BufTag ([S]ymbols)" })
       vim.keymap.set("n", "<leader>fh", "<cmd>LeaderfHistoryCmd<cr>", { desc = "Leader[F] [H]istoryCmd" })
       vim.keymap.set("n", "<leader>fr", "<cmd>Leaderf gtags --remove<cr>", { desc = "Leader[F] [R]emove gtags" })
-      vim.keymap.set("n", "<leader>fu", "<cmd>Leaderf gtags --update<cr>", { desc = "Leaderf[F] [U]pdate gtags" })
+      -- vim.keymap.set("n", "<leader>fu", "<cmd>Leaderf gtags --update<cr>", { desc = "Leaderf[F] [U]pdate gtags" })
       vim.keymap.set("n", "<leader>fG", function() vim.cmd("Leaderf rg -F " .. vim.fn.expand("<cword>")) end, { desc = "Leaderf[F] [G]rep" })
       vim.keymap.set("n", "<leader>fd", function() vim.api.nvim_feedkeys((":Leaderf gtags -d %s"):format(""), "n", false) end, { desc = "Leaderf[F] [G]rep" })
       -- vim.keymap.set("n", "<leader>f",  "<cmd>LeaderfBufTag<cr>", { desc = "Leader[F] BufTag" })
@@ -247,6 +248,95 @@ return {
         vim.api.nvim_feedkeys((":Leaderf rg -F %s -e %s"):format(git_root, word), "n", false) -- will add to cmd history (because there is no \n)
       end
       vim.keymap.set("n", "<Leader>fg", function() grep_cur_gitdir(vim.fn.expand("<cword>")) end, { desc = "Leader[F] [G]rep in git repo" })
+
+
+      -- GTAGS async generator with heartbeat and command display
+      local running = false
+
+      -- Find project root based on Lf_RootMarkers
+      local function find_root()
+        local markers = vim.g.Lf_RootMarkers
+        if not markers or type(markers) ~= "table" or #markers == 0 then
+          error("Lf_RootMarkers is not defined or empty")
+        end
+
+        local dir = vim.fn.expand("%:p:h")
+        while dir ~= "/" do
+          for _, m in ipairs(markers) do
+            if vim.fn.isdirectory(dir .. "/" .. m) == 1 then
+              return dir
+            end
+          end
+          dir = vim.fn.fnamemodify(dir, ":h")
+        end
+      end
+
+      -- Convert root to LeaderF GTAGS path
+      local function gtags_path(root)
+        return vim.fn.expand("~/.cache/LeaderF/gtags/" .. root:gsub("^/",""):gsub("/","-"))
+      end
+
+      -- Main GTAGS generator
+      local function gen_gtags()
+        if running then return vim.notify("GTAGS is already running") end
+        if vim.fn.executable("gtags") == 0 then return vim.notify("gtags not found") end
+
+        local root = find_root()
+        if not root then return vim.notify("No project root found") end
+
+        local out = gtags_path(root)
+        vim.fn.mkdir(out, "p")
+
+        -- Heartbeat interval in seconds
+        local interval = vim.g.gtags_heartbeat_interval or 1
+
+        local cmd = { "gtags", "-i", "--skip-symlink", "--statistics", "--gtagslabel", "default", out }
+        vim.notify("🔄 GTAGS started:\n" .. table.concat(cmd, " "))
+
+        running = true
+        local start = vim.loop.hrtime()
+
+        -- Heartbeat timer
+        local timer = vim.loop.new_timer()
+        timer:start(interval * 1000, interval * 1000, function()
+          vim.schedule(function()
+            local elapsed = (vim.loop.hrtime() - start) / 1e9
+            vim.notify(string.format("⏳ GTAGS running: %.1fs elapsed", elapsed))
+          end)
+        end)
+
+        local output = {}
+
+        vim.fn.jobstart(cmd, {
+          cwd = root,
+          stdout_buffered = true,
+          stderr_buffered = true,
+          on_stdout = function(_, data)
+            if data then for _, l in ipairs(data) do if l~="" then table.insert(output,l) end end end
+          end,
+          on_stderr = function(_, data)
+            if data then for _, l in ipairs(data) do if l~="" then table.insert(output,l) end end end
+          end,
+          on_exit = function(_, code)
+            running = false
+            timer:stop(); timer:close()
+            local elapsed = (vim.loop.hrtime()-start)/1e9
+
+            vim.schedule(function()
+              if code == 0 then
+                vim.notify(string.format("✅ GTAGS done (%.2fs)", elapsed))
+              else
+                vim.notify(string.format("❌ GTAGS failed (code=%d, %.2fs)", code, elapsed), vim.log.levels.ERROR)
+              end
+
+              if #output > 0 then
+                vim.notify(table.concat(output,"\n"))
+              end
+            end)
+          end
+        })
+      end
+      vim.keymap.set("n","<leader>fu",gen_gtags,{desc="Leaderf[F] [U]pdate gtags"})
     end,
   },
 }
