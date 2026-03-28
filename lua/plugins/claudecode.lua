@@ -14,7 +14,7 @@ return {
         border = "rounded",
         width = 0.9,
         height = 0.9,
-        backdrop = 20,
+        backdrop = 80,
 
         -- position = "bottom",
         -- height = 0.5,
@@ -24,6 +24,14 @@ return {
         keys = {
             claude_hide = {toggle_key, function(self) self:hide() end, mode = "t", desc = "Hide",},
         },
+      },
+
+      -- Diff Integration
+      diff_opts = {
+        open_in_new_tab = true,
+        keep_terminal_focus = true, -- If true, moves focus back to terminal after diff opens
+        hide_terminal_in_new_tab = false,
+        -- on_new_file_reject = "keep_empty", -- "keep_empty" or "close_window"
       },
     },
   },

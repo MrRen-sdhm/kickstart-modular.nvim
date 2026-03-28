@@ -69,6 +69,13 @@ return {
         },
       },
     },
+    terminal = {
+      win = {
+        keys = {
+              term_normal = {"<M-n>", [[<C-\><C-n>]], mode = "t", desc = "switch to normal mode",},
+        },
+      },
+    },
     styles = {
       notification = {
         border = true,
