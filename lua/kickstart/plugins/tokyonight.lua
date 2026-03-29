@@ -16,9 +16,11 @@ return {
           comments = { italic = false }, -- Disable italics in comments
           keywords = { italic = true },
         },
-        -- plugins = {
-        --   all = false,
-        -- },
+        plugins = {
+          -- all = false,
+          aerial = false,
+          ["render-markdown"] = true,
+        },
 
         -- default color: https://github.com/folke/tokyonight.nvim/blob/main/extras/lua/tokyonight_moon.lua
         on_colors = function(c)
@@ -27,6 +29,7 @@ return {
           end
           -- bg of molokai
           c.bg = "#121212"
+          c.bg_dark = "#121212"
           c.bg_popup = "#121212"
           c.bg_float = "#121212"
           c.bg_visual = "#262626"
