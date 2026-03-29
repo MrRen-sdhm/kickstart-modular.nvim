@@ -25,14 +25,14 @@ return {
             claude_hide = {toggle_key, function(self) self:hide() end, mode = "t", desc = "Hide",},
         },
       },
+    },
 
-      -- Diff Integration
-      diff_opts = {
-        open_in_new_tab = true,
-        keep_terminal_focus = true, -- If true, moves focus back to terminal after diff opens
-        hide_terminal_in_new_tab = false,
-        -- on_new_file_reject = "keep_empty", -- "keep_empty" or "close_window"
-      },
+    -- Diff Integration
+    diff_opts = {
+      open_in_new_tab = true,
+      keep_terminal_focus = true, -- If true, moves focus back to terminal after diff opens
+      hide_terminal_in_new_tab = false,
+      -- on_new_file_reject = "keep_empty", -- "keep_empty" or "close_window"
     },
   },
   keys = {
