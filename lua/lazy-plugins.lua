@@ -59,6 +59,12 @@ require('lazy').setup({
         -- icons = { '󰼏  ', '󰼐  ', '󰼑  ', '󰼒  ', '󰼓  ', '󰼔  ' },
         icons = { '▉ ', '▊ ', '▋ ', '▌ ', '▍ ', '▎ ' },
         -- position = 'inline',
+
+        -- width = {'full', 'block'},
+        width = 'block',
+        -- min_width = 100,
+        -- left_pad = 2,
+        right_pad = 2,
       },
       pipe_table = { preset = 'round' },
     },
