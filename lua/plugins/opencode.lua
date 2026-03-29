@@ -30,7 +30,13 @@ return {
     ---@type snacks.terminal.Opts
     local snacks_terminal_opts = {
       win = {
-        position = 'right',
+        position = "bottom",
+        height = 0.5,
+        width = 1.0,
+        border = "single",
+
+        -- position = 'right',
+
         enter = false,
         on_win = function(win)
           -- Set up keymaps and cleanup for an arbitrary terminal
@@ -67,11 +73,12 @@ return {
     vim.keymap.set({ "n", "x" }, "<leader>aa", function() require("opencode").ask("@this: ", { submit = true }) end, { desc = "Ask opencode…" })
     vim.keymap.set({ "n", "x" }, "<leader>ax", function() require("opencode").select() end, { desc = "Execute opencode action…" })
     vim.keymap.set({ "n", "t" }, "<leader>at", function() require("opencode").toggle() end, { desc = "Toggle opencode" })
+    vim.keymap.set({ "n", "t" }, "<M-o>", function() require("opencode").toggle() end, { desc = "Toggle opencode" })
 
-    vim.keymap.set({ "n", "x" }, "<leader>as",  function() return require("opencode").operator("@this ") end, { desc = "Send range to opencode", expr = true })
-    vim.keymap.set("n", "<leader>as", function() return require("opencode").operator("@this ") .. "_" end, { desc = "Send line to opencode", expr = true })
+    vim.keymap.set({ "n", "x" }, "<leader>af",  function() return require("opencode").operator("@this ") end, { desc = "Send range to opencode", expr = true })
+    vim.keymap.set("n", "<leader>af", function() return require("opencode").operator("@this ") .. "_" end, { desc = "Send line to opencode", expr = true })
 
-    vim.keymap.set("n", "<leader>au", function() require("opencode").command("session.half.page.up") end,   { desc = "Scroll opencode up" })
-    vim.keymap.set("n", "<leader>ad", function() require("opencode").command("session.half.page.down") end, { desc = "Scroll opencode down" })
+    vim.keymap.set("n", "<M-u>", function() require("opencode").command("session.half.page.up") end,   { desc = "Scroll opencode up" })
+    vim.keymap.set("n", "<M-d>", function() require("opencode").command("session.half.page.down") end, { desc = "Scroll opencode down" })
   end,
 }
