@@ -29,7 +29,7 @@ return {
           end
           -- bg of molokai
           c.bg = "#121212"
-          c.bg_dark = "#121212"
+          c.bg_dark = "#171717"
           c.bg_popup = "#121212"
           c.bg_float = "#121212"
           c.bg_visual = "#262626"
@@ -87,6 +87,8 @@ return {
           hl.SnacksInputIcon = { bg = "#121212", fg = "#82aaff" }
           hl.SnacksInputBorder = { bg = "#121212", fg = "#82aaff" }
           hl.SnacksInputTitle = { bg = "#121212", fg = "#82aaff" }
+
+          hl.RenderMarkdownCodeInline = { bg = "#1c1c1c" }
         end,
       }
 
