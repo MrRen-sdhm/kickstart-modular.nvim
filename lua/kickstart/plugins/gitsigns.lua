@@ -20,7 +20,7 @@ return {
       local gitsigns = require("gitsigns")
 
       -- change the base revision of all buffers
-      gitsigns.change_base("HEAD~1", true)
+      -- gitsigns.change_base("HEAD~1", true)
 
       -- line number highlight
       vim.cmd([[
@@ -39,7 +39,7 @@ return {
           prompt = "Gitsigns change_base:",
         }, function(choice)
           if choice then
-            require("gitsigns").change_base(choice)
+            require("gitsigns").change_base(choice, true)
             vim.notify("Gitsigns change base to: " .. choice)
           end
         end)
@@ -116,6 +116,7 @@ return {
           end, { desc = 'git [D]iff against last commit' })
           -- Toggles
           map('n', '<leader>tb', gitsigns.toggle_current_line_blame, { desc = '[T]oggle git show [b]lame line' })
+          map('n', '<leader>B', gitsigns.blame, { desc = '[T]oggle git show [b]lame' })
           map('n', '<leader>tD', gitsigns.preview_hunk_inline, { desc = '[T]oggle git show [D]eleted' })
         end,
       })
