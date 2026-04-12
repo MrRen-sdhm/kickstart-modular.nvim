@@ -12,7 +12,7 @@ return {
     --   "Method",
     -- },
     layout = {
-      min_width = 40,
+      min_width = 35,
       default_direction = "prefer_left",
     },
     -- auto open aerial if markdown

@@ -25,6 +25,7 @@ return {
       hidden = false, -- disable hidden files
       rg_opts = [[--color=never --hidden --files -g "!.git"]],
     },
+    file_icon_padding = ' ', -- for none mono nerd font
   },
   init = function ()
     local FzfLua = require("fzf-lua")
