@@ -7,7 +7,7 @@ return {
   dependencies = { "folke/snacks.nvim" },
   opts = {
     terminal = {
-      -- provider = "none", -- no UI actions; server + tools remain available
+      provider = "none", -- no UI actions; server + tools remain available
 
       snacks_win_opts = {
         position = "float",
