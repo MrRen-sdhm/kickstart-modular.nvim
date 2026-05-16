@@ -11,6 +11,12 @@ return {
     --   "Function",
     --   "Method",
     -- },
+    icons = {
+      markdown = {
+        Interface = "",
+        -- Interface = "󰧞",
+      }
+    },
     layout = {
       min_width = 35,
       default_direction = "prefer_left",

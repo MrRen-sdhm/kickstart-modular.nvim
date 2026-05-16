@@ -17,17 +17,16 @@ return {
 
     init = function()
       vim.g.Lf_HideHelp = 1
-      vim.g.Lf_UseCache = 0
+      vim.g.Lf_UseCache = 1
       vim.g.Lf_UseVersionControlTool = 0
       -- vim.g.Lf_StlSeparator = { left = '', right = '' }
       vim.g.Lf_StlSeparator = { left = '', right = '' }
       vim.g.Lf_ShowDevIcons = 1
       vim.g.Lf_SpacesAfterIcon = " "
       vim.g.Lf_IgnoreCurrentBufferName = 1
-      vim.g.Lf_ShowRelativePath = 0
+      vim.g.Lf_ShowRelativePath = 1
       vim.g.Lf_DefaultMode = 'NameOnly'
       vim.g.Lf_AutoResize = 0
-      vim.g.Lf_UseVersionControlTool = 0
       vim.g.Lf_RootMarkers = {'.repo'}
       vim.g.Lf_WorkingDirectoryMode = 'AF'
       vim.g.Lf_JumpToExistingWindow = 0
@@ -37,7 +36,7 @@ return {
       vim.g.Lf_GtagsAutoUpdate = 0
       vim.g.Lf_GtagsGutentags = 1
 
-      vim.g.Lf_WildIgnore = { ['dir'] = {}, ['file'] = {'*.[!ch]*', '*.c[a-z]*', '*.h[a-z]*'} }
+      -- vim.g.Lf_WildIgnore = { ['dir'] = {}, ['file'] = {'*.[!ch]*', '*.c[a-z]*', '*.h[a-z]*'} }
       vim.g.Lf_RgConfig = {"-g=!*.mk", "-g=!*.cc"}
       vim.g.Lf_CommandMap = {['<C-K>'] = {'<C-K>', '<Up>'}, ['<C-J>'] = {'<C-J>', '<Down>'}, ['<C-T>'] = {'<C-T>', '<C-\\>'} }
       vim.g.Lf_ShortcutF = '<C-P>'

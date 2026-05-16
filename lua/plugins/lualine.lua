@@ -9,8 +9,8 @@ return {
 
     require("lualine").setup({
       options = {
-        -- theme = "auto",
-        theme = 'tokyonight-moon',
+        theme = "auto",
+        -- theme = 'tokyonight-moon',
         -- theme = 'tokyonight-night',
         -- theme = tokyonight_molokai, -- custom theme
         -- section_separators = { left = '', right = '' },

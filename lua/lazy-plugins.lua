@@ -53,6 +53,9 @@ require('lazy').setup({
     'MeanderingProgrammer/render-markdown.nvim',
     dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
     opts = {
+      anti_conceal = {
+        enabled = false,
+      },
       heading = {
         -- icons = { '1 ', '2 ', '3 ', '4 ', '5 ', '6 ' },
         -- icons = { '①  ', '②  ', '③  ', '④  ', '⑤  ', '⑥  ' },
@@ -60,13 +63,17 @@ require('lazy').setup({
         -- icons = { '▉ ', '▊ ', '▋ ', '▌ ', '▍ ', '▎ ' },
         -- position = 'inline',
 
+        border = true,
+        border_virtual = true,
+
         -- width = {'full', 'block'},
-        width = 'block',
+        -- width = 'block',
         -- min_width = 100,
-        -- left_pad = 2,
-        right_pad = 2,
+        left_pad = 1,
+        -- right_pad = 2,
       },
       pipe_table = { preset = 'round' },
+      code = { sign = false },
     },
     enabled = true,
   },
@@ -102,6 +109,10 @@ require('lazy').setup({
       })
       -- vim.cmd.colorscheme("kanagawa-wave")
     end,
+  },
+  {
+    "projekt0n/github-nvim-theme",
+    lazy = true,
   },
   {
     "olimorris/onedarkpro.nvim",
