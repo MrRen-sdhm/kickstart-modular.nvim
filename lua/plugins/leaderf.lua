@@ -250,7 +250,7 @@ return {
 
 
       -- GTAGS async generator with heartbeat and command display
-      vim.g.gtags_running = false
+      local running = false
 
       -- Find project root based on Lf_RootMarkers
       local function find_root()
@@ -277,7 +277,7 @@ return {
 
       -- Main GTAGS generator
       local function gen_gtags()
-        if vim.g.gtags_running then return vim.notify("GTAGS is already running") end
+        if running then return vim.notify("GTAGS is already running") end
         if vim.fn.executable("gtags") == 0 then return vim.notify("gtags not found") end
 
         local root = find_root()
@@ -292,7 +292,7 @@ return {
         local cmd = { "gtags", "-i", "--skip-symlink", "--statistics", "--gtagslabel", "default", out }
         vim.notify("🔄 GTAGS started:\n" .. table.concat(cmd, " "))
 
-        vim.g.gtags_running = true
+        running = true
         local start = vim.loop.hrtime()
 
         -- Heartbeat timer
@@ -300,7 +300,7 @@ return {
         timer:start(interval * 1000, interval * 1000, function()
           vim.schedule(function()
             local elapsed = (vim.loop.hrtime() - start) / 1e9
-            vim.notify(string.format("🔍 GTAGS running: %.1fs elapsed", elapsed))
+            vim.notify(string.format("⏳ GTAGS running: %.1fs elapsed", elapsed))
           end)
         end)
 
@@ -317,7 +317,7 @@ return {
             if data then for _, l in ipairs(data) do if l~="" then table.insert(output,l) end end end
           end,
           on_exit = function(_, code)
-            vim.g.gtags_running = false
+            running = false
             timer:stop(); timer:close()
             local elapsed = (vim.loop.hrtime()-start)/1e9
 
@@ -336,42 +336,6 @@ return {
         })
       end
       vim.keymap.set("n","<leader>fu",gen_gtags,{desc="Leaderf[F] [U]pdate gtags"})
-
-      -- Intercept quit commands when gtags is running
-      local function safe_quit(cmd)
-        return function(opts)
-          if vim.g.gtags_running then
-            -- Only allow :quit and :qall (with or without !)
-            if cmd == "quit" or cmd == "qall" then
-              return vim.cmd(cmd .. (opts.bang and "!" or ""))
-            end
-
-            -- Block all other quit commands
-            return vim.notify(
-              "⚠️ GTAGS running, use :quit or :qall to exit",
-              vim.log.levels.WARN
-            )
-          end
-
-          -- Normal execution when not running
-          vim.cmd(cmd .. (opts.bang and "!" or ""))
-        end
-      end
-
-      -- Define overridden commands
-      for _, c in ipairs({ "Q", "Qa", "Wq", "Wqa", "Quit", "Qall" }) do
-        vim.api.nvim_create_user_command(c, safe_quit(c:lower()), {bang = true, force = true,})
-      end
-
-      -- Map lowercase commands to uppercase ones
-      vim.cmd([[
-        cabbrev q Q
-        cabbrev qa Qa
-        cabbrev wq Wq
-        cabbrev wqa Wqa
-        cabbrev quit Quit
-        cabbrev qall Qall
-      ]])
     end,
   },
 }
