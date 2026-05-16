@@ -99,5 +99,45 @@ return {
     -- vim.keymap.set('n', '<leader>sc', function()
     --   FzfLua.files({cwd = vim.fn.stdpath('config'), winopts = {title=" 🔧 Search Neovim Config "}})
     -- end, { desc = '[S]earch Neovim [C]onfig files' })
+
+    -- ==============================================================================
+    -- Function: LeaderF-style file finder with cache mechanism
+    -- Feature: Separate cache file per project for faster startup
+    -- Hotkey: Alt+U -> Refresh & rebuild cache
+    -- Logic: Load cache first if exists, refresh triggers real-time scan
+    -- ==============================================================================
+    local cache_dir = vim.fn.stdpath("cache") .. "/fzf_files_cache"
+    vim.fn.mkdir(cache_dir, "p")
+
+    local function get_project_cache()
+      local cwd = vim.fn.getcwd()
+      local safe_name = cwd:gsub("/", "%%")
+      return cache_dir .. "/" .. safe_name .. ".txt"
+    end
+
+    local function scan_files_with_cache()
+      return "rg --files --color=never | tee " .. vim.fn.shellescape(get_project_cache())
+    end
+
+    local function open_files()
+      local cache_path = get_project_cache()
+      local has_cache = vim.fn.filereadable(cache_path) == 1
+
+      FzfLua.files({
+        cmd = has_cache and ("cat " .. vim.fn.shellescape(cache_path)) or scan_files_with_cache(),
+        cwd = vim.fn.getcwd(),
+        actions = {
+          ["alt-u"] = {
+            fn = function(_, opts)
+              opts.cmd = scan_files_with_cache()
+              FzfLua.files(opts)
+            end,
+            desc = "refresh-files-cache"
+          }
+        },
+      })
+    end
+
+    vim.keymap.set("n", "<c-p>", open_files, { silent = true, desc = "Find Files With Cache" })
   end
 }

@@ -39,7 +39,8 @@ return {
       -- vim.g.Lf_WildIgnore = { ['dir'] = {}, ['file'] = {'*.[!ch]*', '*.c[a-z]*', '*.h[a-z]*'} }
       vim.g.Lf_RgConfig = {"-g=!*.mk", "-g=!*.cc"}
       vim.g.Lf_CommandMap = {['<C-K>'] = {'<C-K>', '<Up>'}, ['<C-J>'] = {'<C-J>', '<Down>'}, ['<C-T>'] = {'<C-T>', '<C-\\>'} }
-      vim.g.Lf_ShortcutF = '<C-P>'
+      -- vim.g.Lf_ShortcutF = '<C-P>'
+      vim.g.Lf_ShortcutF = ''
       vim.g.Lf_ShortcutB = ''
       vim.g.Lf_PreviewResult = { ['File'] = 0, ['Buffer'] = 0, ['Mru'] = 0, ['Tag'] = 1, ['BufTag'] = 1, ['Function'] = 1, ['Line'] = 1, ['Rg'] = 0, ['Gtags'] = 1 }
 
