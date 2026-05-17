@@ -30,6 +30,8 @@ return {
   init = function ()
     local FzfLua = require("fzf-lua")
 
+    vim.keymap.set("n", "<leader>fr", FzfLua.resume, { silent = true, desc = "[F]zfLua [R]esume" })
+
     local function get_repo_root()
       local current_file_dir = vim.fn.expand("%:p:h")
       local repo_dir = vim.fn.finddir(".repo", current_file_dir .. ";") -- /home/sdhm/test/.repo
@@ -44,7 +46,9 @@ return {
       return repo_root
     end
 
-    -- search files by extensions
+    -- ==============================================================================
+    -- Function: search files by extensions
+    -- ==============================================================================
     local function find_files_ext()
       vim.ui.input({ prompt = "Extensions (example: lua py md): " }, function(input)
         -- Case 1: user pressed ESC / cancelled
@@ -70,8 +74,11 @@ return {
       end)
     end
     vim.keymap.set("n", "<leader>sf", find_files_ext, { desc = "[S]earch [F]iles by extension" })
+    vim.keymap.set("n", "<leader>fe", find_files_ext, { desc = "[F]zfLua Search Files by [E]xtension" })
 
-    -- find files in repo dirs
+    -- ==============================================================================
+    -- Function: find files in repo dirs
+    -- ==============================================================================
     local function files_in_repo_dirs()
       local repo_root, error_message = get_repo_root()
 
@@ -95,7 +102,9 @@ return {
     end
     vim.keymap.set("n", "<leader>p", files_in_repo_dirs, { desc = "Search File in repo dirs"})
 
-    -- -- search nvim configuration files
+    -- ==============================================================================
+    -- Function: search nvim configuration files
+    -- ==============================================================================
     -- vim.keymap.set('n', '<leader>sc', function()
     --   FzfLua.files({cwd = vim.fn.stdpath('config'), winopts = {title=" 🔧 Search Neovim Config "}})
     -- end, { desc = '[S]earch Neovim [C]onfig files' })
@@ -116,7 +125,9 @@ return {
     end
 
     local function scan_files_with_cache()
-      return "rg --files --color=never | tee " .. vim.fn.shellescape(get_project_cache())
+      -- *.* = Match only files with file extensions (filenames contain dot)
+      -- !.* = Exclude hidden files and hidden directories (start with dot)
+      return "rg --files --color=never -g '*.*' -g '!.*' | tee " .. vim.fn.shellescape(get_project_cache())
     end
 
     local function open_files()
@@ -138,6 +149,7 @@ return {
       })
     end
 
-    vim.keymap.set("n", "<c-p>", open_files, { silent = true, desc = "Find Files With Cache" })
+    vim.keymap.set("n", "<c-p>", open_files, { silent = true, desc = "FzfLua Search Files With Cache" })
+    vim.keymap.set("n", "<leader>fs", open_files, { silent = true, desc = "[F]zfLua [S]earch Files With Cache" })
   end
 }

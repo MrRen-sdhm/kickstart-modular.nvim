@@ -152,12 +152,12 @@ return {
       vim.keymap.set("n", "<leader>fM", "<cmd>LeaderfMru<cr>", { desc = "Leader[F] [M]ru" })
       vim.keymap.set("n", "<leader>fm", "<cmd>Leaderf mru --project<cr>", { desc = "Leader[F] [M]ru in project" })
       vim.keymap.set("n", "<leader>ff", "<cmd>Leaderf function<cr>", { desc = "Leader[F] [F]unction" })
-      vim.keymap.set("n", "<leader>fs", "<cmd>LeaderfBufTag<cr>", { desc = "Leader[F] BufTag ([S]ymbols)" })
+      vim.keymap.set("n", "<leader>ft", "<cmd>LeaderfBufTag<cr>", { desc = "Leader[F] BufTag ([S]ymbols)" })
       vim.keymap.set("n", "<leader>fh", "<cmd>LeaderfHistoryCmd<cr>", { desc = "Leader[F] [H]istoryCmd" })
-      vim.keymap.set("n", "<leader>fr", "<cmd>Leaderf gtags --remove<cr>", { desc = "Leader[F] [R]emove gtags" })
-      -- vim.keymap.set("n", "<leader>fu", "<cmd>Leaderf gtags --update<cr>", { desc = "Leaderf[F] [U]pdate gtags" })
-      vim.keymap.set("n", "<leader>fG", function() vim.cmd("Leaderf rg -F " .. vim.fn.expand("<cword>")) end, { desc = "Leaderf[F] [G]rep" })
-      vim.keymap.set("n", "<leader>fd", function() vim.api.nvim_feedkeys((":Leaderf gtags -d %s"):format(""), "n", false) end, { desc = "Leaderf[F] [G]rep" })
+      vim.keymap.set("n", "<leader>fR", "<cmd>Leaderf gtags --remove<cr>", { desc = "Leader[F] [R]emove gtags" })
+      -- vim.keymap.set("n", "<leader>fu", "<cmd>Leaderf gtags --update<cr>", { desc = "Leader[F] [U]pdate gtags" })
+      vim.keymap.set("n", "<leader>fG", function() vim.cmd("Leaderf rg -F " .. vim.fn.expand("<cword>")) end, { desc = "Leader[F] [G]rep" })
+      vim.keymap.set("n", "<leader>fd", function() vim.api.nvim_feedkeys((":Leaderf gtags -d %s"):format(""), "n", false) end, { desc = "Leader[F] [G]rep" })
       -- vim.keymap.set("n", "<leader>f",  "<cmd>LeaderfBufTag<cr>", { desc = "Leader[F] BufTag" })
       -- vim.keymap.set("n", "<leader>p", "<cmd>LeaderfFile<cr>", { desc = "Leader[F] File" })
       vim.keymap.set("n", "<leader>P", ":Leaderf file --input ", { desc = "Leader[F] File with input" })
@@ -336,7 +336,7 @@ return {
           end
         })
       end
-      vim.keymap.set("n","<leader>fu",gen_gtags,{desc="Leaderf[F] [U]pdate gtags"})
+      vim.keymap.set("n","<leader>fU",gen_gtags,{desc="Leader[F] [U]pdate gtags"})
     end,
   },
 }
